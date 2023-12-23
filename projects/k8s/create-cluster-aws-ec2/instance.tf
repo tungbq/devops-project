@@ -11,7 +11,7 @@ module "ec2_instance" {
   # instance_type  = "t2.medium"
   instance_type  = "t2.small"
   key_name       = "k8sclusteraws"
-  subnet_ids     = ["subnet-058a7514ba8adbb07", "subnet-0dbcd1ac168414927", "subnet-032f5077729435858"]
+  subnet_ids     = ["subnet-0bd490b41b8a806d8", "subnet-05e405bb009af9fc0", "subnet-0890390acefca267a"]
   instance_count = 1
 
   inbound_rules = [

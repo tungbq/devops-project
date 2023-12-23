@@ -23,7 +23,7 @@ resource "aws_security_group" "instance-sg" {
   }
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "k8s_nodes" {
   count = var.instance_count
 
   ami                    = var.ami_id
