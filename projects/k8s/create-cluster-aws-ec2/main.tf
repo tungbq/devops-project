@@ -133,3 +133,16 @@ resource "null_resource" "k8s_worker_join_2" {
     EOF
   }
 }
+
+
+# K8s checker at the end
+resource "null_resource" "execute_k8s_master_checker" {
+  depends_on = [null_resource.execute_k8s_master]
+  provisioner "local-exec" {
+    command = <<EOF
+      echo "Check k8s master"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh
+      echo "Check k8s master completed"
+    EOF
+  }
+}
