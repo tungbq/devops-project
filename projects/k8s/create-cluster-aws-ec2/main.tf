@@ -55,6 +55,7 @@ output "public_ips" {
   value = module.ec2_instance.public_ips
 }
 
+# Initialize the k8s controller
 resource "null_resource" "execute_script" {
   provisioner "local-exec" {
     # command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"

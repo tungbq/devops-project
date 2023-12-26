@@ -25,7 +25,6 @@ elif [[ "$PUBLIC_IP_ACCESS" == "true" ]]; then
 
   MASTER_PUBLIC_IP=$(curl ifconfig.me && echo "")
   sudo kubeadm init --control-plane-endpoint="$MASTER_PUBLIC_IP" --apiserver-cert-extra-sans="$MASTER_PUBLIC_IP" --pod-network-cidr="$POD_CIDR" --node-name "$NODENAME" --ignore-preflight-errors Swap --ignore-preflight-errors=NumCPU
-
 else
   echo "Error: MASTER_PUBLIC_IP has an invalid value: $PUBLIC_IP_ACCESS"
   exit 1
