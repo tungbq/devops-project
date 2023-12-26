@@ -96,10 +96,10 @@ data "local_file" "output_file" {
   filename   = "/tmp/token_output.txt"
 }
 
-output "command_output" {
-  depends_on = [null_resource.k8s_master_generate_token]
-  value      = data.local_file.output_file.content
-}
+# output "command_output" {
+#   depends_on = [null_resource.k8s_master_generate_token]
+#   value      = data.local_file.output_file.content
+# }
 
 # Get k8s token
 resource "null_resource" "check_token_output" {
@@ -109,13 +109,21 @@ resource "null_resource" "check_token_output" {
   }
 }
 
+locals {
+  cleaned_content = replace(data.local_file.output_file.content, "\nEOT", "")
+}
+
+output "cleaned_output" {
+  value = local.cleaned_content
+}
+
 # [Worker] Join worker to k8s cluster
 resource "null_resource" "k8s_worker_join_1" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "${data.local_file.output_file.content}"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "${cleaned_content}"
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
@@ -128,7 +136,7 @@ resource "null_resource" "k8s_worker_join_2" {
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "${data.local_file.output_file.content}"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "${cleaned_content}"
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
@@ -136,7 +144,7 @@ resource "null_resource" "k8s_worker_join_2" {
 
 
 # K8s checker at the end
-resource "null_resource" "execute_k8s_master_checker" {
+resource "null_resource" "execute_k8s_master_checker_again" {
   depends_on = [null_resource.execute_k8s_master]
   provisioner "local-exec" {
     command = <<EOF
