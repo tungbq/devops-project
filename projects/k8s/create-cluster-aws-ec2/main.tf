@@ -110,7 +110,9 @@ output "cleaned_output" {
 resource "null_resource" "k8s_worker_join_1" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
-    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh $(cat /tmp/token_output.txt)"
+    command = <<-EOT
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} 'bash -s' < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)"
+    EOT
   }
 }
 
