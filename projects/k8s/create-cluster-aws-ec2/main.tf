@@ -12,7 +12,7 @@ module "ec2_instance" {
   instance_type  = "t2.small"
   key_name       = "k8sclusterawsv1"
   subnet_ids     = ["subnet-0bd490b41b8a806d8", "subnet-05e405bb009af9fc0", "subnet-0890390acefca267a"]
-  instance_count = 3
+  instance_count = 2
 
   inbound_rules = [
     {
@@ -110,18 +110,18 @@ output "cleaned_output" {
 resource "null_resource" "k8s_worker_join_1" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
-    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)""
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh $(cat /tmp/token_output.txt)"
   }
 }
 
 
-# [Worker] Join worker to k8s cluster
-resource "null_resource" "k8s_worker_join_2" {
-  depends_on = [null_resource.k8s_master_generate_token]
-  provisioner "local-exec" {
-    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)""
-  }
-}
+# # [Worker] Join worker to k8s cluster
+# resource "null_resource" "k8s_worker_join_2" {
+#   depends_on = [null_resource.k8s_master_generate_token]
+#   provisioner "local-exec" {
+#     command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh $(cat /tmp/token_output.txt)"
+#   }
+# }
 
 
 # K8s checker at the end
