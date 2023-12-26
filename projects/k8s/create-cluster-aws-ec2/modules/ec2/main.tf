@@ -39,3 +39,7 @@ resource "aws_instance" "k8s_nodes" {
 
   subnet_id = element(var.subnet_ids, count.index % length(var.subnet_ids))
 }
+
+output "public_ips" {
+  value = [for instance in aws_instance.k8s_nodes : instance.public_ip]
+}

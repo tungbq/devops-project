@@ -10,7 +10,7 @@ module "ec2_instance" {
   ami_id = "ami-0c7217cdde317cfec"
   # instance_type  = "t2.medium"
   instance_type  = "t2.small"
-  key_name       = "k8sclusteraws"
+  key_name       = "k8sclusterawsv1"
   subnet_ids     = ["subnet-0bd490b41b8a806d8", "subnet-05e405bb009af9fc0", "subnet-0890390acefca267a"]
   instance_count = 3
 
@@ -49,4 +49,12 @@ module "ec2_instance" {
       cidr_block = "0.0.0.0/0"
     }
   ]
+}
+
+
+resource "null_resource" "execute_script" {
+  provisioner "local-exec" {
+    command = "ssh -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} 'bash -s' < scripts/local_script.sh"
+    # command = "date"
+  }
 }
