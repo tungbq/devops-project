@@ -59,12 +59,7 @@ output "public_ips" {
 resource "null_resource" "execute_k8s_master" {
   provisioner "local-exec" {
     # command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"
-    command = <<EOF
-      echo "Wait 2 mins for EC2 ready"; sleep 120;
-      echo "Preparing k8s master"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh
-      echo "Prepair completed for Kubernetes cluster"
-    EOF
+    command = "sleep 120; ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh"
   }
 }
 
@@ -72,11 +67,7 @@ resource "null_resource" "execute_k8s_master" {
 resource "null_resource" "execute_k8s_master_checker" {
   depends_on = [null_resource.execute_k8s_master]
   provisioner "local-exec" {
-    command = <<EOF
-      echo "Check k8s master"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh
-      echo "Check k8s master completed"
-    EOF
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh"
   }
 }
 
@@ -84,11 +75,7 @@ resource "null_resource" "execute_k8s_master_checker" {
 resource "null_resource" "k8s_master_generate_token" {
   depends_on = [null_resource.execute_k8s_master_checker]
   provisioner "local-exec" {
-    command = <<EOF
-      echo "k8s_master_generate_token"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_generate_token.sh > /tmp/token_output.txt
-      echo "k8s_master_generate_token completed"
-    EOF
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_generate_token.sh > /tmp/token_output.txt"
   }
 }
 
@@ -123,11 +110,7 @@ output "cleaned_output" {
 resource "null_resource" "k8s_worker_join_1" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
-    command = <<EOF
-      echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)"
-      echo "Worker join process completed for Kubernetes cluster"
-    EOF
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)""
   }
 }
 
@@ -136,11 +119,7 @@ resource "null_resource" "k8s_worker_join_1" {
 resource "null_resource" "k8s_worker_join_2" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
-    command = <<EOF
-      echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)"
-      echo "Worker join process completed for Kubernetes cluster"
-    EOF
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)""
   }
 }
 
@@ -149,10 +128,6 @@ resource "null_resource" "k8s_worker_join_2" {
 resource "null_resource" "execute_k8s_master_checker_again" {
   depends_on = [null_resource.execute_k8s_master]
   provisioner "local-exec" {
-    command = <<EOF
-      echo "Check k8s master"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh
-      echo "Check k8s master completed"
-    EOF
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh"
   }
 }
