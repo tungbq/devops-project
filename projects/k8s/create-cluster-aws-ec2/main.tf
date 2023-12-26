@@ -93,19 +93,12 @@ resource "null_resource" "check_token_output" {
   }
 }
 
-variable "k8s_join_token" {
-  type        = string
-  description = "k8s token"
-  default     = data.local_file.output_file.content
-}
-
-
 # [Worker] Join worker to k8s cluster
 resource "null_resource" "k8s_worker_join_1" {
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${var.k8s_join_token}
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${data.local_file.output_file.content}
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
@@ -117,7 +110,7 @@ resource "null_resource" "k8s_worker_join_2" {
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${var.k8s_join_token}
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${data.local_file.output_file.content}
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
