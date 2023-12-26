@@ -60,7 +60,7 @@ resource "null_resource" "execute_k8s_master" {
   provisioner "local-exec" {
     # command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"
     command = <<EOF
-      echo "Wait 2 mins for EC2 ready"; sleep 120
+      echo "Wait 2 mins for EC2 ready"; sleep 120;
       echo "Preparing k8s master"
       ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh
       echo "Prepair completed for Kubernetes cluster"

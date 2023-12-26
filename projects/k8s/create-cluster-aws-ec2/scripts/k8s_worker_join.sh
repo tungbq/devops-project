@@ -1,5 +1,5 @@
 #!/bin/bash
 
-token=$1
+token="$1"
 echo "Runing command $token"
-bash $token
+sudo "$token"
