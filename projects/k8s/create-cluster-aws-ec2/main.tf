@@ -56,9 +56,69 @@ output "public_ips" {
 }
 
 # Initialize the k8s controller
-resource "null_resource" "execute_script" {
+resource "null_resource" "execute_k8s_master" {
   provisioner "local-exec" {
     # command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"
     command = "sleep 120; ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh"
+  }
+}
+
+# K8s checker
+resource "null_resource" "execute_k8s_master_checker" {
+  provisioner "local-exec" {
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_checker.sh"
+  }
+}
+
+# K8s generate token
+resource "null_resource" "k8s_master_generate_token" {
+  provisioner "local-exec" {
+    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master_generate_token.sh > /tmp/token_output.txt"
+  }
+}
+
+data "local_file" "output_file" {
+  depends_on = [null_resource.k8s_master_generate_token]
+  filename   = "/tmp/token_output.txt"
+}
+
+output "command_output" {
+  value = data.local_file.output_file.content
+}
+
+# Get k8s token
+resource "null_resource" "check_token_output" {
+  provisioner "local-exec" {
+    command = "cat /tmp/token_output.txt"
+  }
+}
+
+variable "k8s_join_token" {
+  type        = string
+  description = "k8s token"
+  default     = data.local_file.output_file.content
+}
+
+
+# [Worker] Join worker to k8s cluster
+resource "null_resource" "k8s_worker_join_1" {
+  provisioner "local-exec" {
+    command = <<EOF
+      echo "Starting worker join process for Kubernetes cluster"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${var.k8s_join_token}
+      echo "Worker join process completed for Kubernetes cluster"
+    EOF
+  }
+}
+
+
+# [Worker] Join worker to k8s cluster
+resource "null_resource" "k8s_worker_join_2" {
+  provisioner "local-exec" {
+    command = <<EOF
+      echo "Starting worker join process for Kubernetes cluster"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh ${var.k8s_join_token}
+      echo "Worker join process completed for Kubernetes cluster"
+    EOF
   }
 }
