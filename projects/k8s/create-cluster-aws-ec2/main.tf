@@ -12,7 +12,7 @@ module "ec2_instance" {
   instance_type  = "t2.small"
   key_name       = "k8sclusterawsv1"
   subnet_ids     = ["subnet-0bd490b41b8a806d8", "subnet-05e405bb009af9fc0", "subnet-0890390acefca267a"]
-  instance_count = 2
+  instance_count = 3
 
   inbound_rules = [
     {
@@ -79,32 +79,6 @@ resource "null_resource" "k8s_master_generate_token" {
   }
 }
 
-data "local_file" "output_file" {
-  depends_on = [null_resource.k8s_master_generate_token]
-  filename   = "/tmp/token_output.txt"
-}
-
-# output "command_output" {
-#   depends_on = [null_resource.k8s_master_generate_token]
-#   value      = data.local_file.output_file.content
-# }
-
-# Get k8s token
-resource "null_resource" "check_token_output" {
-  depends_on = [null_resource.k8s_master_generate_token]
-  provisioner "local-exec" {
-    command = "cat /tmp/token_output.txt"
-  }
-}
-
-locals {
-  depends_on      = [null_resource.k8s_master_generate_token]
-  cleaned_content = replace(data.local_file.output_file.content, "\nEOT", "")
-}
-
-output "cleaned_output" {
-  value = local.cleaned_content
-}
 
 # [Worker] Join worker to k8s cluster
 resource "null_resource" "k8s_worker_join_1" {
