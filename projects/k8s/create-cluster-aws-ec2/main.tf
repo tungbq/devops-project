@@ -57,7 +57,7 @@ output "public_ips" {
 
 resource "null_resource" "execute_script" {
   provisioner "local-exec" {
-    command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"
-    # command = "ssh -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh"
+    # command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/local_script.sh"
+    command = "sleep 120; ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[0]} bash < scripts/k8s_master.sh"
   }
 }
