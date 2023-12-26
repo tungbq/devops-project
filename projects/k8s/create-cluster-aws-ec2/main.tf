@@ -125,7 +125,7 @@ resource "null_resource" "k8s_worker_join_1" {
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "${local.cleaned_content}"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)"
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
@@ -138,7 +138,7 @@ resource "null_resource" "k8s_worker_join_2" {
   provisioner "local-exec" {
     command = <<EOF
       echo "Starting worker join process for Kubernetes cluster"
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "${local.cleaned_content}"
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)
       echo "Worker join process completed for Kubernetes cluster"
     EOF
   }
