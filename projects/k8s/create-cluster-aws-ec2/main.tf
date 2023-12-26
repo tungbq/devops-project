@@ -111,19 +111,11 @@ resource "null_resource" "k8s_worker_join_1" {
   depends_on = [null_resource.k8s_master_generate_token]
   provisioner "local-exec" {
     command = <<-EOT
-      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} 'bash -s' < scripts/k8s_worker_join.sh "$(cat /tmp/token_output.txt)"
+      cmd_run=$(cat /tmp/token_output.txt);
+      ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[1]} 'bash -s' < scripts/k8s_worker_join.sh $cmd_run
     EOT
   }
 }
-
-
-# # [Worker] Join worker to k8s cluster
-# resource "null_resource" "k8s_worker_join_2" {
-#   depends_on = [null_resource.k8s_master_generate_token]
-#   provisioner "local-exec" {
-#     command = "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ubuntu@${module.ec2_instance.public_ips[2]} bash < scripts/k8s_worker_join.sh $(cat /tmp/token_output.txt)"
-#   }
-# }
 
 
 # K8s checker at the end
