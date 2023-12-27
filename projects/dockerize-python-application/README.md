@@ -2,9 +2,18 @@
 
 - This project helps us understand and know how to dockerize an application (python flask in this case)
 
+# Prerequisite
+
+## Basic knowledge about docker
+
+- https://www.docker.com/
+- https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md
+
 ## Install docker
 
 - See: https://github.com/tungbq/devops-basic/tree/main/topics/docker#how-to-install-docker
+
+# Playaround with docker
 
 ## Build the docker image
 
@@ -21,7 +30,9 @@
 
 ## AIO script could be found at
 
-- [demo_project.sh](./demo_project.sh)
+- Run the script: [demo_project.sh](./demo_project.sh)
+
+# Bonus
 
 ## Related link
 
