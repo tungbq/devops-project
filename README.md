@@ -14,4 +14,6 @@ Collection of DevOps project
 
 ### Check out [projects](./projects/)
 
-- [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)
+| ID  | Project                             | URL                                                                  | Status  |
+| :-- | :---------------------------------- | :------------------------------------------------------------------- | :------ |
+| 01  | Create k8s cluster aws with kubeadm | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/) | ✔️ Done |
