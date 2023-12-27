@@ -14,6 +14,7 @@ Collection of DevOps project
 
 ### Check out [projects](./projects/)
 
-| ID  | Project                             | URL                                                                  | Status  |
-| :-- | :---------------------------------- | :------------------------------------------------------------------- | :------ |
-| 01  | Create k8s cluster aws with kubeadm | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/) | ✔️ Done |
+| ID  | Project                             | URL                                                                      | Status      |
+| :-- | :---------------------------------- | :----------------------------------------------------------------------- | :---------- |
+| 01  | Create k8s cluster aws with kubeadm | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)     | ✔️ Done     |
+| 02  | Dockerize python application        | [dockerize-python-application](./projects/dockerize-python-application/) | In-progress |
