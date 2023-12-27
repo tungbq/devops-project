@@ -1,0 +1,2 @@
+# nginx-static-website-local
+
