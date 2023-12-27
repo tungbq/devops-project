@@ -5,3 +5,4 @@
 - Backend: ?
 - Frontend: ?
 - Database: SQL
+- TODO: Add diagram?

@@ -12,5 +12,5 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "http://localhost:5000" // Proxy configuration to forward API requests in development
+  "proxy": "http://localhost:5000"
 }
