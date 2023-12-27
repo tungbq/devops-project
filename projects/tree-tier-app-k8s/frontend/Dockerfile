@@ -1,24 +1,19 @@
-# Use a base image suitable for your frontend (e.g., Node.js)
-FROM node:lts
+# Use the official Node.js image for building the React app
+FROM node:latest as builder
 
-# Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the container
-COPY ./src/package*.json ./
-
-# Install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the source code to the container
-COPY ./src .
+COPY . .
+RUN npm run build
 
-# Specify any necessary build commands here
-# For example, if it's a React app, you might have a build command like:
-# RUN npm run build
+# Use a smaller base image for serving the built React app
+FROM nginx:latest
 
-# Expose the port your frontend app runs on (if needed)
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+
 EXPOSE 80
 
-# Command to start your frontend application
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
