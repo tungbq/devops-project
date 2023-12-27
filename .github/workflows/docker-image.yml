@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: cd projects/dockerize-python-application; ./demo_project.sh
+      run: cd projects/dockerize-python-application; chmod +x demo_project.sh; ls -la; ./demo_project.sh
