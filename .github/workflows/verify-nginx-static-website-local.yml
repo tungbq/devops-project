@@ -1,0 +1,21 @@
+name: Verify docker app
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'projects/nginx-static-website-local/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'projects/nginx-static-website-local/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd projects/nginx-static-website-local
+        chmod +x demo_project.sh; ls -la
+        ./demo_project.sh
