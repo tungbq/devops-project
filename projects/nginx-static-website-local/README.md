@@ -28,6 +28,10 @@
 - `curl localhost:8080`
 - Or open http://localhost:8080/ in your browser
 
+## AIO script could be found at
+
+- Run the script: [demo_project.sh](./demo_project.sh)
+
 # Related document
 
 - https://docs.nginx.com/
