@@ -1,13 +1,13 @@
 // api.test.js
 
 const request = require('supertest');
-const { app, pool } = require('../app'); // Replace with your actual setup
+const { app, pool } = require('../server'); // Replace with your actual setup
 
 describe('API Routes', () => {
 	let server;
 
 	beforeAll(() => {
-		server = app.listen(3000); // Use a test-specific port or other strategies
+		server = app.listen(3001); // Use a test-specific port or other strategies
 	});
 
 	afterAll((done) => {

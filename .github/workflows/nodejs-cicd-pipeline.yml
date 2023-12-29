@@ -25,6 +25,12 @@ jobs:
           cd projects/nodejs-cicd-pipeline/
           docker build -t node-demo:latest .
 
+      - name: Run tests
+        run: |
+          # Run tests here, replace with your actual test commands
+          docker build -t my-node-app-test -f Dockerfile.test .
+          docker run my-node-app-test
+
       - name: Push Docker image
         run: |
           # Check if the branch is main and push image if true
