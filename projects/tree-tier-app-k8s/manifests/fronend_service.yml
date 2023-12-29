@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 3
+  replicas: 2 # Adjust as needed
   selector:
     matchLabels:
       app: frontend
@@ -28,6 +28,9 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: your-frontend-image:tag
+          image: your_registry/your_frontend_image:latest
           ports:
             - containerPort: 80
+          env:
+            - name: REACT_APP_BACKEND_URL
+              value: "http://backend-service:3001" # Use the backend service name
