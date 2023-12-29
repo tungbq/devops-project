@@ -1,4 +1,4 @@
-name: Verify docker app
+name: Verify nginx-static-website-local
 
 on:
   push:
