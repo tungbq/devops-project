@@ -27,6 +27,7 @@ jobs:
 
       - name: Run tests
         run: |
+          cd projects/nodejs-cicd-pipeline/  
           # Run tests here, replace with your actual test commands
           docker build -t my-node-app-test -f Dockerfile.test .
           docker run my-node-app-test
