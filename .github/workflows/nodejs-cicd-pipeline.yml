@@ -22,11 +22,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t node-demo:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ steps.vars.COMMIT_ID }} .
+          docker build -t node-demo:latest .
 
       - name: Push Docker image
         run: |
           # Check if the branch is main and push image if true
           if [ ${{ github.ref }} != 'refs/heads/main' ]; then
             echo "Skip push image for ${{ github.ref }}"
+            exit 0
           fi
+
+          docker tag node-demo:latest ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ steps.vars.COMMIT_ID }}
