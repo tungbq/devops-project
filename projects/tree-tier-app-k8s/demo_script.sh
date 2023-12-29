@@ -12,8 +12,8 @@ popd
 pwd
 echo "Build frontend"
 pushd frontend
-docker build -t react-frontend .
-docker run -p 3000:80 -e REACT_APP_API_URL='http://localhost:3001' react-frontend
+docker build --build-arg REACT_APP_API_URL=http://localhost:3001 -t react-frontend .
+docker run -p 3000:80 -e react-frontend
 popd
 
 # DB
