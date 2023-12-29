@@ -8,7 +8,7 @@ spec:
     app: backend
   ports:
     - protocol: "TCP"
-      port: 8080
+      port: 3001
       targetPort: 8080
 ---
 # backend-deployment.yaml
@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: backend-deployment
 spec:
-  replicas: 3
+  replicas: 2 # Adjust as needed
   selector:
     matchLabels:
       app: backend
@@ -28,6 +28,12 @@ spec:
     spec:
       containers:
         - name: backend
-          image: your-backend-image:tag
+          image: your_backend_image:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 3001
+          env:
+            - name: PGUSER
+              value: your_username
+            - name: PGPASSWORD
+              value: your_password
+            # Add other environment variables for database connection
