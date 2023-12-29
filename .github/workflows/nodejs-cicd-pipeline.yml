@@ -1,0 +1,30 @@
+name: Node.js CI/CD with Docker
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'projects/nodejs-cicd-pipeline/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get commit ID
+        run: echo "::set-env name=COMMIT_ID::$(git rev-parse --short HEAD)"
+
+      - name: Build Docker image
+        run: |
+          docker build -t node-demo:latest -t ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ env.COMMIT_ID }} .
+
+      - name: Push Docker image
+        run: |
+          # Check if the branch is main and push image if true
+          if [ ${{ github.ref }} != 'refs/heads/main' ]; then
+            echo "Skip push image for ${{ github.ref }}"
+          fi
