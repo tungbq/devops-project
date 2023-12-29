@@ -22,6 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
+          cd projects/nodejs-cicd-pipeline/
           docker build -t node-demo:latest .
 
       - name: Push Docker image
