@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 
-function App() {
-	const [data, setData] = useState('');
+const App = () => {
+  const [tasks, setTasks] = useState([]);
 
-	useEffect(() => {
-		fetchData();
-	}, []);
+  useEffect(() => {
+    fetch('http://backend:3001/api/tasks') // Fetch tasks from the backend
+      .then((res) => res.json())
+      .then((data) => setTasks(data))
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
-	const fetchData = async () => {
-		try {
-			const response = await fetch('/api/data');
-			const jsonData = await response.json();
-			setData(jsonData.message);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		}
-	};
-
-	return (
-		<div className='App'>
-			<header className='App-header'>
-				<h1>React App</h1>
-				<p>Data from Node.js Backend:</p>
-				<p>{data}</p>
-			</header>
-		</div>
-	);
-}
+  return (
+    <div>
+      <h1>Task Management</h1>
+      <ul>
+        {tasks.map((task) => (
+          <li key={task.id}>{task.title}</li>
+          // Other task details rendering...
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default App;

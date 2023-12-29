@@ -1,14 +1,29 @@
 const express = require('express');
-const cors = require('cors'); // For handling CORS (Cross-Origin Resource Sharing)
 const app = express();
+const { Pool } = require('pg');
 
-app.use(cors());
-
-app.get('/api/data', (req, res) => {
-	res.json({ message: 'Hello from the Node.js backend!' });
+// PostgreSQL database connection setup
+const pool = new Pool({
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST || 'localhost',
+  port: process.env.PGPORT || 5432,
 });
 
-const PORT = process.env.PORT || 5001;
+// Define API routes
+app.get('/api/tasks', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM tasks');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Other CRUD operations (POST, PUT, DELETE) for tasks
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
