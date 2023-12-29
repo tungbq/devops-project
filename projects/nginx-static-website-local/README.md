@@ -27,3 +27,7 @@
 
 - `curl localhost:8080`
 - Or open http://localhost:8080/ in your browser
+
+# Related document
+
+- https://docs.nginx.com/
