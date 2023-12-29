@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Get commit ID
-        run: echo ::set-output name=COMMIT_ID::$(git rev-parse --short HEAD)
+        run: echo "COMMIT_ID::$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build Docker image
         run: |
