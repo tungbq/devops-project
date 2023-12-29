@@ -18,3 +18,4 @@ Collection of DevOps project
 | :-- | :---------------------------------- | :----------------------------------------------------------------------- | :------ |
 | 01  | Create k8s cluster aws with kubeadm | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)     | ✔️ Done |
 | 02  | Dockerize python application        | [dockerize-python-application](./projects/dockerize-python-application/) | ✔️ Done |
+| 03  | Nginx Static Website Local          | [nginx-static-website-local](./projects/nginx-static-website-local/)     | ✔️ Done |
