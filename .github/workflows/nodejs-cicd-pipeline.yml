@@ -19,7 +19,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd projects/nodejs-cicd-pipeline/
-          docker build -t node-demo:latest .
+          docker build -t node-demo:${{ github.sha }} .
 
       - name: Run tests
         run: |
@@ -32,6 +32,6 @@ jobs:
           if [ ${{ github.ref }} != 'refs/heads/main' ]; then
             echo "Skip push image for ${{ github.ref }}"
             exit 0
+          else
+            docker tag node-demo:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ github.sha }}
           fi
-
-          docker tag node-demo:latest ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ github.sha }}
