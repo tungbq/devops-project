@@ -16,10 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Get commit ID
-        id: vars
-        run: echo "COMMIT_ID=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
       - name: Build Docker image
         run: |
           cd projects/nodejs-cicd-pipeline/
@@ -38,4 +34,4 @@ jobs:
             exit 0
           fi
 
-          docker tag node-demo:latest ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ steps.vars.COMMIT_ID }}
+          docker tag node-demo:latest ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ github.sha }}
