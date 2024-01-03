@@ -36,4 +36,5 @@ jobs:
           else
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
             docker tag node-demo:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ github.sha }}
+            echo "TODO: Push image here..."
           fi
