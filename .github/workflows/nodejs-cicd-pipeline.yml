@@ -1,0 +1,41 @@
+name: Node.js CI/CD with Docker
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'projects/nodejs-cicd-pipeline/**'
+      - '.github/workflows/nodejs-cicd-pipeline.yml'
+
+jobs:
+  nodejs-cicd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          cd projects/nodejs-cicd-pipeline/
+          docker build -t node-demo:${{ github.sha }} .
+
+      - name: Run tests
+        run: |
+          cd projects/nodejs-cicd-pipeline/  
+          # Run tests here, replace with your actual test commands
+          echo "TODO: Run test here"
+
+      - name: Push Docker image
+        run: |
+          # Check if the branch is main and push image if true
+          if [ ${{ github.ref }} != 'refs/heads/main' ]; then
+            echo "Skip push image for ${{ github.ref }}"
+            exit 0
+          else
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+            docker tag node-demo:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/node-demo:${{ github.sha }}
+            docker images
+            echo "TODO: Push image here..."
+          fi
