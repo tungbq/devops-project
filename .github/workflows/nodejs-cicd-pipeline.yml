@@ -9,7 +9,7 @@ on:
       - '.github/workflows/nodejs-cicd-pipeline.yml'
 
 jobs:
-  build:
+  nodejs-cicd:
     runs-on: ubuntu-latest
 
     steps:
