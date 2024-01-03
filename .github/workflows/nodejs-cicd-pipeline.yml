@@ -7,6 +7,12 @@ on:
     paths:
       - 'projects/nodejs-cicd-pipeline/**'
       - '.github/workflows/nodejs-cicd-pipeline.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/nodejs-cicd-pipeline/**'
+      - '.github/workflows/nodejs-cicd-pipeline.yml'
 
 jobs:
   nodejs-cicd:
