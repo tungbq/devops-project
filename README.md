@@ -1,6 +1,9 @@
-# devops-project
+<h1 align="center">DevOps Project</h1>
 
-Collection of DevOps project
+<p align="center">Collection of DevOps project 💝</p>
+<p align="center">
+  <a href="https://img.shields.io/github/last-commit/tungbq/devops-basic/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/tungbq/devops-project/main" /></a>
+</p>
 
 ## Hit the Star! ⭐
 
