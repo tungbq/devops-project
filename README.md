@@ -23,3 +23,4 @@
 | 02  | Dockerize python application        | [dockerize-python-application](./projects/dockerize-python-application/) | ✔️ Done |
 | 03  | Nginx Static Website Local          | [nginx-static-website-local](./projects/nginx-static-website-local/)     | ✔️ Done |
 | 04  | NodeJS project with CICD            | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                 | ✔️ Done |
+| 05  | AWS 3 tiers web                     | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                     | ✔️ Done |
