@@ -6,3 +6,7 @@ variable "instance_type" {
 variable "ami" {
   description = "The AMI ID for the Windows instance"
 }
+
+variable "key_name" {
+  description = "The key name for AWS EC2 instance"
+}
