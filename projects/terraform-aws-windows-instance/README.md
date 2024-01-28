@@ -1,5 +1,7 @@
 # Project: Create Windows instance on AWS using Terraform
 
+This project help you create and connect to your own Windows instance (VM) on AWS using Terraform
+
 ## 1-Overview
 
 This project help us launch a Windows instance on AWS using Terraform. Following below architecture
