@@ -62,8 +62,13 @@
 
 - Avoid permission issue `chmod 400 your_key.pem`
 - Run `ssh -i "<your-key-pair>" openvpnas@your_instance_public_DNS_or_IP`
-- Then `sudo passwd openvpn`
+- Then `sudo passwd openvpn` to setup your new password
 
 ### Configuring the VPN server
 
 Visit: http://your_instance_public_DNS_or_IP:943/admin
+Login with:
+
+- User: `openvpn`
+- Password: `your_own_pass_created_above`
+
