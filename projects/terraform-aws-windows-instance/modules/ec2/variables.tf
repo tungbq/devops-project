@@ -10,3 +10,7 @@ variable "ami" {
 variable "key_name" {
   description = "The key name for AWS EC2 instance"
 }
+
+variable "allowed_ip" {
+  description = "The IP address allowed for RDP access"
+}
