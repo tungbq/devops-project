@@ -102,3 +102,7 @@ Then start using it your way, for example open `Microsoft Edge` brower to access
 ![window_access_success](./asset/window_access_success.png)
 
 Congrats! You did it. You now have your own windows VM running on AWS
+
+## 5-Clean up resource
+
+If you dont want to use the instance anymore, run `terraform destroy` to terminate your EC2 Windows instance and its related resources
