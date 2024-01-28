@@ -11,6 +11,12 @@ resource "aws_security_group" "ec2_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["${var.allowed_ip}/32"]
   }
+  ingress {
+    from_port   = 943
+    to_port     = 943
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   # Allow the instance to connect to the world
   egress {
