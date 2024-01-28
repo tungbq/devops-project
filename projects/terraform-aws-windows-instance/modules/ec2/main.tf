@@ -15,9 +15,10 @@ resource "aws_security_group" "ec2_security_group" {
 }
 
 resource "aws_instance" "windows_instance" {
-  ami           = var.ami
-  instance_type = var.instance_type
-  key_name      = var.key_name
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
 
   # Add other instance configurations as needed
 
