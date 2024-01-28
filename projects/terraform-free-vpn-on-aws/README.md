@@ -71,4 +71,3 @@ Login with:
 
 - User: `openvpn`
 - Password: `your_own_pass_created_above`
-
