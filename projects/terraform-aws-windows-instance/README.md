@@ -13,6 +13,10 @@ If not, run `cd terraform-aws-windows-instance`
 
 ### Update your own credentials
 
+Crea file `terraform.tfvars`, by running command: `cp terraform.tfvars.sample terraform.tfvars`
+Then add your public ID here (to allow RDP access from your PC).
+You can refer to `terraform.tfvars.sample` for reference.
+
 ### Terraform init
 
 Run `terraform init`
