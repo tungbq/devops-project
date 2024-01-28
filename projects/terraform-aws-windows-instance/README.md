@@ -106,6 +106,8 @@ Then start using it your way, for example open `Microsoft Edge` brower to access
 
 Congrats! You did it. You now have your own windows VM running on AWS
 
+_Tips:_ Once you are in the Windows, you can change your Windows password to your own definition password for easier access in the next time when needed (Instead of using the very long default password)
+
 ## 5-Clean up resource
 
 If you dont want to use the instance anymore, run `terraform destroy` to terminate your EC2 Windows instance and its related resources
