@@ -17,6 +17,7 @@ This project help us launch a Windows instance on AWS using Terraform. Following
 
 - Follow https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
 - Note the key-pair name that you created for later use. E.g: `my-new-keypair-for-demo`
+- The private key file is automatically downloaded by your browser. The base file name is the name you specified as the name of your key pair, and the file name extension is determined by the file format you chose. Save the private key file in a safe place.
 
 ### Install terraform
 
