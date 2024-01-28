@@ -7,6 +7,7 @@ This project help you create and connect to your own Windows instance (VM) on AW
 This project help us launch a Windows instance on AWS using Terraform. Following below architecture
 
 ![windows-ec2-architecture](https://docs.aws.amazon.com/images/AWSEC2/latest/WindowsGuide/images/overview_getting_started.png)
+
 (The source image provided by AWS at: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)
 
 ## 2-Prerequisite
