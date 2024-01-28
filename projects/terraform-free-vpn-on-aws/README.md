@@ -61,7 +61,7 @@
 ### SSH to the instance to get password
 
 - Avoid permission issue `chmod 400 your_key.pem`
-- Run `ssh -i "<your-key-pair>" openvpnas@<your-public-instance-domain>`
+- Run `ssh -i "<your-key-pair>" openvpnas@your_instance_public_DNS_or_IP`
 - Then `sudo passwd openvpn`
 
 ### Configuring the VPN server
