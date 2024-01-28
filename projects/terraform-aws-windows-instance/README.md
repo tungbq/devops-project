@@ -1,25 +1,46 @@
 # Project: Create Windows instance on AWS using Terraform
 
-## Overview
+## 1-Overview
 
 This project help us launch a Windows instance on AWS using Terraform. Following below architecture
 
 ![windows-ec2-architecture](https://docs.aws.amazon.com/images/AWSEC2/latest/WindowsGuide/images/overview_getting_started.png)
 (The source image provided by AWS at: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)
 
-## Launch the new Windows instance
+## 2-Prerequisite
+
+### Sign up for an AWS account
+
+- Follow https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#sign-up-for-aws
+
+### Create a key pair
+
+- Follow https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
+- Note the key-pair name that you created for later use. E.g: `my-new-keypair-for-demo`
+
+### Install terraform
+
+- Follow https://github.com/tungbq/devops-basic/tree/main/topics/terraform#installation
+
+## 3-Launch the new Windows instance
 
 ### Navigate to the current project
 
 Ensure you are in the terraform-aws-windows-instance project.
 If not, run `cd terraform-aws-windows-instance`
 
-### Update your own credentials
+### Update your own credentials/data in `terraform.tfvars`
 
-Crea file `terraform.tfvars`, by running command: `cp terraform.tfvars.sample terraform.tfvars`
+Create file `terraform.tfvars`, by running command: `cp terraform.tfvars.sample terraform.tfvars`
+
+#### Public-IP
+
 Then add your public ID here (to allow RDP access from your PC).
 _Tips_: Visit https://www.whatismyip.com/ to get your public IP
-You can refer to `terraform.tfvars.sample` for reference.
+
+#### Keypair name
+
+Provide the keypair name you created in the step `Create a key pair` above
 
 ### Terraform init
 
@@ -33,7 +54,7 @@ Run `terraform plan`
 
 Run `terraform apply`
 
-## Connect to the newly created instance
+## 4-Connect to the newly created instance
 
 ### Get the Public IP:
 

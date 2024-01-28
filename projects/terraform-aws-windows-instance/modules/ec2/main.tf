@@ -1,10 +1,5 @@
 # modules/ec2/main.tf
 
-resource "aws_key_pair" "ec2_key_pair" {
-  key_name   = var.key_name
-  public_key = file("~/.ssh/id_rsa.pub") # Change this to your public key file path
-}
-
 resource "aws_security_group" "ec2_security_group" {
   name        = "ec2_security_group"
   description = "Allow RDP access from a specific IP address"
@@ -22,7 +17,7 @@ resource "aws_security_group" "ec2_security_group" {
 resource "aws_instance" "windows_instance" {
   ami           = var.ami
   instance_type = var.instance_type
-  key_name      = aws_key_pair.ec2_key_pair.key_name
+  key_name      = var.key_name
 
   # Add other instance configurations as needed
 
