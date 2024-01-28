@@ -13,7 +13,7 @@ resource "aws_security_group" "ec2_security_group" {
     from_port   = 3389
     to_port     = 3389
     protocol    = "tcp"
-    cidr_blocks = [var.allowed_ip]
+    cidr_blocks = ["${var.allowed_ip}/32"]
   }
 
   # Add other security group configurations as needed
