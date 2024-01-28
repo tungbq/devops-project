@@ -1,0 +1,4 @@
+# terraform.tfvars
+# TODO: Replace by yours credentials locally when run the demo
+aws_access_key = "your-access-key"
+aws_secret_key = "your-secret-key"
