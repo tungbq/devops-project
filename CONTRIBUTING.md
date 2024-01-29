@@ -1,6 +1,6 @@
 # Contributing
 
-The following information provides a set of guidelines for contributing to the tungbq/devops-basic chain main repo. Use your best judgment, and, if you see room for improvement, please propose changes to this document.
+The following information provides a set of guidelines for contributing to the tungbq/devops-project chain main repo. Use your best judgment, and, if you see room for improvement, please propose changes to this document.
 
 ## First steps
 
