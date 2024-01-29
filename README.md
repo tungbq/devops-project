@@ -22,7 +22,7 @@
 
 ## Projects
 
-### Check out [projects](./projects/)
+### Check out [projects](./projects/) list below
 
 | ID  | Project                             | URL                                                                          | Technology                          | Status  |
 | :-- | :---------------------------------- | :--------------------------------------------------------------------------- | :---------------------------------- | :------ |
