@@ -45,6 +45,6 @@ resource "aws_instance" "windows_instance" {
   # Add other instance configurations as needed
 
   tags = {
-    Name = "Windows_Instance"
+    Name = "OpenVPN_Instance"
   }
 }

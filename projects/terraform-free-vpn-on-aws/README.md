@@ -2,7 +2,7 @@
 
 ## 1-Overview
 
-- This project help us launch a Open VPN server on AWS
+- This project help you launch your own Open VPN server on AWS
 
 ## 2-Prerequisite
 
@@ -71,3 +71,9 @@ Login with:
 
 - User: `openvpn`
 - Password: `your_own_pass_created_above`
+
+![config_vpn](./asset/config_vpn.png)
+
+### Result
+
+![connect_ok](./asset/connect_ok.png)
