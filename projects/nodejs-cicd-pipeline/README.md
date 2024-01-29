@@ -25,3 +25,6 @@
 
 - `curl localhost:3001`
 - Or open http://localhost:3001/ in your browser
+
+## Create CI pipeline for this app
+- Check the GitHub workflow: https://github.com/tungbq/devops-project/blob/main/.github/workflows/nodejs-cicd-pipeline.yml
