@@ -26,3 +26,4 @@
 | 04  | NodeJS project with CICD                       | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | ✔️ Done |
 | 05  | AWS 3 tiers web                                | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
 | 06  | Create Windows instance on AWS using Terraform | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
+| 07  | Create free VPN server on AWS                  | [free-vpn-on-aws](./projects/free-vpn-on-aws/)                               | ✔️ Done |

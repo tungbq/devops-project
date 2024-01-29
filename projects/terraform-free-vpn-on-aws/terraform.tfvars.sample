@@ -1,0 +1,5 @@
+# terraform.tfvars
+# TODO: Replace by your IP locally when run the demo
+# Visit https://www.whatismyip.com/ to get your public IP
+allowed_ip  = "1.2.3.4"
+keykey_name = "changeme"
