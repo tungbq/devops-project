@@ -14,6 +14,11 @@
 
 - To get the basic concepts of DevOps and related tools, visit: [tungbq/devops-basic](https://github.com/tungbq/devops-basic)
 
+## Contributing
+- See: [CONTRIBUTING.md](./CONTRIBUTING.md)
+- Looking for the issue to work on? Check the list of our open issues [**good first issue**](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- Feel free to open a new issue if you want to request more content about DevOps
+
 ## Projects
 
 ### Check out [projects](./projects/)
