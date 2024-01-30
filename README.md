@@ -22,7 +22,7 @@
 
 ## Projects
 
-### Check out [projects](./projects/)
+### Check out [projects](./projects/) list below
 
 | ID  | Project                             | URL                                                                          | Technology                          | Status  |
 | :-- | :---------------------------------- | :--------------------------------------------------------------------------- | :---------------------------------- | :------ |
@@ -32,4 +32,4 @@
 | 04  | NodeJS project with CICD            | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | `docker`, `nodejs`, `github-action` | ✔️ Done |
 | 05  | AWS 3 tiers web                     | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | `web`, `aws`                        | ✔️ Done |
 | 06  | Create Windows instance on AWS      | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | `terraform`, `aws`                  | ✔️ Done |
-| 07  | Create free VPN server on AWS       | [free-vpn-on-aws](./projects/free-vpn-on-aws/)                               | `terraform`, `aws`                  | ✔️ Done |
+| 07  | Create free VPN server on AWS       | [free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                               | `terraform`, `aws`                  | ✔️ Done |
