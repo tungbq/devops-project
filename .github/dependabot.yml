@@ -5,3 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - directory: "/projects/create-k8s-cluster-aws-ec2"
+    package-ecosystem: "terraform"
+    schedule:
+      interval: "weekly"
