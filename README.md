@@ -22,7 +22,7 @@
 
 ## Projects
 
-### Check out [projects](./projects/) list below
+### Check out [projects](./projects/) list below 🔥
 
 | ID  | Project                             | URL                                                                          | Technology                          | Status  |
 | :-- | :---------------------------------- | :--------------------------------------------------------------------------- | :---------------------------------- | :------ |
@@ -33,3 +33,5 @@
 | 05  | AWS 3 tiers web                     | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | `web`, `aws`                        | ✔️ Done |
 | 06  | Create Windows instance on AWS      | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | `terraform`, `aws`                  | ✔️ Done |
 | 07  | Create free VPN server on AWS       | [free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                               | `terraform`, `aws`                  | ✔️ Done |
+
+### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
