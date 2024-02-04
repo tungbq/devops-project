@@ -1,0 +1,31 @@
+name: Run Terraform
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3.0.0
+
+      - name: Navigate to target folder
+        run: |
+          ls -la
+          echo "Navigating to `terraform-aws-windows-instance`"
+          cd projects/terraform-aws-windows-instance
+          ls -la
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
