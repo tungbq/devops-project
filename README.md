@@ -1,6 +1,6 @@
 <h1 align="center">DevOps Project</h1>
 
-<p align="center">Collection of DevOps project to level up your DevOps skills 💝</p>
+<p align="center">Collection of DevOps projects to level up your DevOps skills 💝</p>
 <p align="center">
   <a href="https://img.shields.io/github/last-commit/tungbq/devops-project/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/tungbq/devops-project/main" /></a>
   <a href="https://github.com/tungbq/devops-project/releases"><img alt="devops-project release" src="https://img.shields.io/github/release/tungbq/devops-project.svg" /></a>
