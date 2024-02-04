@@ -21,11 +21,6 @@ jobs:
           cd projects/terraform-aws-windows-instance
           ls -la
 
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply --auto-approve
+          terraform init
+          terraform plan
+          terraform apply --auto-approve
