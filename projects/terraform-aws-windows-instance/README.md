@@ -30,6 +30,8 @@
 ### 2.4-Configure Terraform environment to work with AWS
 
 - Check this `Prerequisites` section: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#prerequisites
+- If you get the permission denied issue when running terraform, check your IAM user (associated with the AWS credentials) permission configuration
+- Ref: https://github.com/hashicorp/terraform/issues/2834
 
 ## 3-Launch the new Windows instance
 
