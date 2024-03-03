@@ -35,3 +35,6 @@ terraform.rc
 
 # NodeJS
 .env
+
+# terraform k8s
+k8s_config
