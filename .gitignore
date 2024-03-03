@@ -38,3 +38,6 @@ terraform.rc
 
 # terraform k8s
 k8s_config
+
+# tf plan
+*.tfplan

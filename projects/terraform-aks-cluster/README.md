@@ -88,3 +88,10 @@ aks-agentpool-28459652-vmss000000   118m         6%     1346Mi          29%
 aks-agentpool-28459652-vmss000001   166m         8%     998Mi           21%
 ➜  terraform-aks-cluster git:(issue-86) ✗
 ```
+
+## Delete AKS resources
+
+```bash
+terraform plan -destroy -out main.destroy.tfplan
+terraform apply main.destroy.tfplan
+```
