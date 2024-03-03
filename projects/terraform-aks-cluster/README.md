@@ -71,4 +71,20 @@ chmod +x streamline_k8s_config.sh
 ```bash
 export KUBECONFIG=./k8s_config/azurek8s
 kubectl get nodes
+kubectl top nodes
+```
+
+- You now can see the output like this, congratulations!
+
+```bash
+➜  terraform-aks-cluster git:(issue-86) ✗ export KUBECONFIG=./k8s_config/azurek8s
+➜  terraform-aks-cluster git:(issue-86) ✗ kubectl get nodes
+NAME                                STATUS   ROLES   AGE   VERSION
+aks-agentpool-28459652-vmss000000   Ready    agent   12m   v1.27.9
+aks-agentpool-28459652-vmss000001   Ready    agent   11m   v1.27.9
+➜  terraform-aks-cluster git:(issue-86) ✗ kubectl top nodes
+NAME                                CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+aks-agentpool-28459652-vmss000000   118m         6%     1346Mi          29%
+aks-agentpool-28459652-vmss000001   166m         8%     998Mi           21%
+➜  terraform-aks-cluster git:(issue-86) ✗
 ```
