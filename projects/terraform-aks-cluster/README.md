@@ -8,12 +8,13 @@ An Azure account with an active subscription
 
 ```bash
 az login
-
 az account show
 
-az account list --query "[?user.name=='<microsoft_account_email>'].{Name:name, ID:id, Default:isDefault}" --output Table
-
-az account set --subscription "<subscription_id_or_subscription_name>"
+# Replace the email by your Microsoft account email (as shown in the above command)
+email="replace_by_your_email"
+subscription_id=$(az account list --query "[?user.name=='$email'].{Name:name, ID:id, Default:isDefault}" | jq -r '.[].ID')
+echo $subscription_id
+az account set --subscription $subscription_id
 ```
 
 ## Create a service principal
@@ -22,9 +23,9 @@ az account set --subscription "<subscription_id_or_subscription_name>"
 chmod +x specify-service-cred.sh
 
 # Run the scipt with you service name and subscription ID
-## your_service_principal_name: input your target Service Principal Name
 ## your_subscription_id: input your target Subscription ID
-specify-service-cred.sh "your_service_principal_name" "your_subscription_id"
+## your_service_principal_name: input your target Service Principal Name
+./specify-service-cred.sh "your_subscription_id "your_service_principal_name"
 ```
 
 ## Deploy cluster
@@ -54,22 +55,23 @@ terraform apply main.tfplan
 ```bash
 resource_group_name=$(terraform output -raw resource_group_name)
 az aks list --resource-group $resource_group_name --query "[].{\"K8s cluster name\":name}" --output table
-# NOTE: Do not commit the `./k8s_config/azurek8s` file
-# I've already added the `k8s_config` folder to the .gitignore. But just for sure!
-echo "$(terraform output kube_config)" > ./k8s_config/azurek8s
+# NOTE: Do not commit the `./private_k8s_config/azurek8s` file
+# I've already added the `private_k8s_config` folder to the .gitignore. But just for sure!
+mkdir private_k8s_config
+echo "$(terraform output kube_config)" > ./private_k8s_config/azurek8s
 ```
 
 - Streamline your k8s config
 
 ```bash
 chmod +x streamline_k8s_config.sh
-./streamline_k8s_config.sh ./k8s_config/azurek8s
+./streamline_k8s_config.sh ./private_k8s_config/azurek8s
 ```
 
 - Accessing your cluster
 
 ```bash
-export KUBECONFIG=./k8s_config/azurek8s
+export KUBECONFIG=./private_k8s_config/azurek8s
 kubectl get nodes
 kubectl top nodes
 ```
@@ -77,7 +79,7 @@ kubectl top nodes
 - You now can see the output like this, congratulations!
 
 ```bash
-➜  terraform-aks-cluster git:(issue-86) ✗ export KUBECONFIG=./k8s_config/azurek8s
+➜  terraform-aks-cluster git:(issue-86) ✗ export KUBECONFIG=./private_k8s_config/azurek8s
 ➜  terraform-aks-cluster git:(issue-86) ✗ kubectl get nodes
 NAME                                STATUS   ROLES   AGE   VERSION
 aks-agentpool-28459652-vmss000000   Ready    agent   12m   v1.27.9
@@ -94,4 +96,6 @@ aks-agentpool-28459652-vmss000001   166m         8%     998Mi           21%
 ```bash
 terraform plan -destroy -out main.destroy.tfplan
 terraform apply main.destroy.tfplan
+# Remove the k8s config
+rm private_k8s_config
 ```

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-service_principal_name=$1
-subscription_id=$2
+subscription_id=$1
+service_principal_name=$2
 
 # Replace this with the actual command that generates the JSON output
 json_output=$(az ad sp create-for-rbac --name $service_principal_name --role Contributor --scopes /subscriptions/$subscription_id)

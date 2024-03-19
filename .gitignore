@@ -37,7 +37,7 @@ terraform.rc
 .env
 
 # terraform k8s
-k8s_config
+private_k8s_config
 
 # tf plan
 *.tfplan
