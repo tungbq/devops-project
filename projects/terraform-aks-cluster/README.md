@@ -91,6 +91,44 @@ aks-agentpool-28459652-vmss000001   166m         8%     998Mi           21%
 ➜  terraform-aks-cluster git:(issue-86) ✗
 ```
 
+## Deploy app
+
+Using sample app from https://github.com/Azure-Samples/aks-store-demo/blob/main/aks-store-all-in-one.yaml
+
+```bash
+kubectl create ns aks-aio-app
+kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/aks-store-demo/main/aks-store-all-in-one.yaml -n aks-aio-app
+```
+
+## Check deployment
+
+Get all resource of `aks-aio-app` namespace
+
+```bash
+kubectl get all -n aks-aio-app
+```
+
+## Check service
+
+```bash
+➜  terraform-aks-cluster git:(issue-88-deploy) ✗ kubectl get service -n aks-aio-app
+NAME               TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)              AGE
+makeline-service   ClusterIP      10.0.214.49    <none>          3001/TCP             2m2s
+mongodb            ClusterIP      10.0.62.53     <none>          27017/TCP            2m7s
+order-service      ClusterIP      10.0.43.255    <none>          3000/TCP             2m4s
+product-service    ClusterIP      10.0.189.194   <none>          3002/TCP             2m1s
+rabbitmq           ClusterIP      10.0.150.103   <none>          5672/TCP,15672/TCP   2m5s
+store-admin        LoadBalancer   10.0.73.148    xx.yy.zz.aa     80:32072/TCP         118s
+store-front        LoadBalancer   10.0.9.95      xx.yy.zz.ff     80:31199/TCP         119s
+```
+
+## Access to the app
+
+- Use the <EXTERNAL-IP> of store-front to access the frontend page
+  ![](./assets/result/store-front.png)
+- Use the <EXTERNAL-IP> of store-admin to access the admin page
+  ![](./assets/result/store-admin.png)
+
 ## Delete AKS resources
 
 ```bash
