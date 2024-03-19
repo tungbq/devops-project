@@ -9,6 +9,8 @@ An Azure account with an active subscription
 ```bash
 az login
 az account show
+
+# Replace the email by your Microsoft account email (as shown in the above command)
 email="replace_by_your_email"
 subscription_id=$(az account list --query "[?user.name=='$email'].{Name:name, ID:id, Default:isDefault}" | jq -r '.[].ID')
 echo $subscription_id
