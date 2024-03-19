@@ -9,8 +9,10 @@ An Azure account with an active subscription
 ```bash
 az login
 az account show
-az account list --query "[?user.name=='tungbq.1995@outlook.com'].{Name:name, ID:id, Default:isDefault}" --output Table
-az account set --subscription "your_subscription_id"
+email="replace_by_your_email"
+subscription_id=$(az account list --query "[?user.name=='$email'].{Name:name, ID:id, Default:isDefault}" | jq -r '.[].ID')
+echo $subscription_id
+az account set --subscription $subscription_id
 ```
 
 ## Create a service principal
