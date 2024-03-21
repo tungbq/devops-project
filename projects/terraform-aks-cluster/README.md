@@ -53,20 +53,19 @@ terraform apply main.tfplan
 ### Check the result
 
 - Verify if your AKS cluster is up and running!
+- NOTE: Do not commit the `./private_k8s_config/azurek8s` file
+- I've already added the `private_k8s_config` folder to the .gitignore. But just for sure!
 
 ```bash
+# Check cluster
 resource_group_name=$(terraform output -raw resource_group_name)
 az aks list --resource-group $resource_group_name --query "[].{\"K8s cluster name\":name}" --output table
-# NOTE: Do not commit the `./private_k8s_config/azurek8s` file
-# I've already added the `private_k8s_config` folder to the .gitignore. But just for sure!
+
+# Save config to local
 mkdir private_k8s_config
 echo "$(terraform output kube_config)" > ./private_k8s_config/azurek8s
-```
 
-- Streamline your k8s config
-
-```bash
-chmod +x streamline_k8s_config.sh
+# Streamline your k8s config
 ./streamline_k8s_config.sh ./private_k8s_config/azurek8s
 ```
 
