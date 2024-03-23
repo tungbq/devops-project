@@ -1,37 +1,39 @@
 # Project: Build static website with Nginx
 
-- This project helps us learn Nginx and create a static website for that
+## Overview
 
-# Prerequisite
+### Introduction
 
-## Basic knowledge about docker
+- This project helps us learn Nginx and create a static website.
+- Tech stack: `Nginx`, `Docker`
+- To get basic knowledge about Docker, you could visit: [**Docker**](https://www.docker.com/) and [**devops-basic/docker**](https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md) repository
 
-- https://www.docker.com/
-- https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md
+### Prerequisite
 
-## Install docker
+- Basic knowledge about Docker
+- Tools: `docker`, `curl`
 
-- See: https://github.com/tungbq/devops-basic/tree/main/topics/docker#how-to-install-docker
+## 1-Setup Nginx Server
 
-# Playaround with docker
-
-## Build the docker image
+### 1.1-Build Docker Image
 
 - Run `docker build -t my-nginx-static-site .`
 
-## Run the Docker container based on the image
+### 1.2-Run Docker Container
 
 - Run `docker run -d -p 8080:80 my-nginx-static-site`
 
-## Verify the result
+### 1.3-Verify Installation
 
-- `curl localhost:8080`
-- Or open http://localhost:8080/ in your browser
+- Execute `curl localhost:8080` in your terminal
+- Alternatively, open [http://localhost:8080/](http://localhost:8080/) in your browser
 
-## AIO script could be found at
+## 2-Explore Additional Resources
 
-- Run the script: [demo_project.sh](./demo_project.sh)
+### 2.1-Script for Automation
 
-# Related document
+- Find the automation script at: [demo_project.sh](./demo_project.sh)
 
-- https://docs.nginx.com/
+# Related Documentation
+
+- [Nginx Documentation](https://docs.nginx.com/)
