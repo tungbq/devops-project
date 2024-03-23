@@ -49,8 +49,8 @@ az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}  --query 'servi
 kubectl get pods -n aks-istio-system
 
 # Enable side car injection for a namespace, if we deploy in another namespace, add more
-kubectl label namespace default istio.io/rev=asm-1-18
-kubectl label namespace aks-istio-system istio.io/rev=asm-1-18
+kubectl label namespace default istio.io/rev=asm-1-19
+kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
 ## apply for more labels as your needed...
 ```
 
@@ -207,12 +207,25 @@ Now we can visit: http://localhost:20001 to explore the Kiali
 
 ## 8-Troubleshooting
 
-Incase we want to redeploy/delete some helm release, run `helm delete $release -n $namespace`, for example
+### Incase we want to redeploy/delete some helm release
+
+-Run `helm delete $release -n $namespace`, for example:
 
 ```bash
 helm delete kube-prometheus-stack -n aks-istio-system
 helm delete kiali-operator -n kiali-operator
 ```
+
+### In case we want to redeploy the application via `kubectl`
+
+- Run
+
+```bash
+kubectl delete -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/shopping.yaml
+kubectl delete -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/shopping-istio-gateway.yaml
+```
+
+- Then deploy again as usual
 
 ## 9-Related document
 
