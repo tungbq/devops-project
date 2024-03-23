@@ -20,9 +20,10 @@ variable "vm_size" {
 }
 ```
 
-## 2-Environemnt
+## 2-Prepare Environment
 
-Declare the DevOps project path to use later in kubectl command
+- Declare the absolute DevOps project path to use later in `kubectl` command
+- When we open new terminal, we should run these commands to set environment again
 
 ```bash
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
@@ -135,14 +136,14 @@ kubectl get pod -n aks-istio-system
 
 ### 6.2-Access the dashboard
 
-- Expose Grafana dashboard service
+- Expose Grafana dashboard service (Open another terminal and set environment as step `2-Prepare Environment`)
 
 ```bash
 # - Expose Grafana
 kubectl port-forward svc/kube-prometheus-stack-grafana -n aks-istio-system 4000:80
 ```
 
-- (Optional) Expose Prometheus service
+- (Optional) Expose Prometheus service (Open another terminal and set environment as step `2-Prepare Environment`)
 
 ```bash
 # Expose Prometheus (Optional)
@@ -195,6 +196,8 @@ kubectl get svc -n aks-istio-system
 ```bash
 kubectl -n aks-istio-system create token kiali-service-account
 ```
+
+- Expose Kiali dashboard service (Open another terminal and set environment as step `2-Prepare Environment`)
 
 ```bash
 kubectl port-forward svc/kiali -n aks-istio-system 20001:20001
