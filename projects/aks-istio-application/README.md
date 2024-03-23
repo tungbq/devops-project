@@ -8,7 +8,7 @@
 
 ## 1-Provision a fresh AKS cluster
 
-Provision AKS cluster, follow this guide: [terraform-aks-cluster](../terraform-aks-cluster/), with some notes:
+Provision AKS cluster, follow section 1 `1-Provision a fresh AKS cluster` in this project: [terraform-aks-cluster](../terraform-aks-cluster/), with some notes:
 
 - Update the VM type of `vm_size` in values.tf to `Standard_D3_v2` (more powerful compute)
 
@@ -19,6 +19,8 @@ variable "vm_size" {
   default     = "Standard_D3_v2"
 }
 ```
+
+- Only run the code in section 1 (`1-Provision a fresh AKS cluster`), skip the rest
 
 ## 2-Prepare Environment
 
