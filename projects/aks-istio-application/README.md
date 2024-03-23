@@ -56,7 +56,7 @@ kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
 ## apply for more labels as your needed...
 ```
 
-NOTE:
+**NOTE:**
 
 - It will take few minutes to enable istio adon to your cluster
 - The istio will be installed in `aks-istio-system` namespace
@@ -88,20 +88,19 @@ az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUS
 kubectl get svc aks-istio-ingressgateway-external -n aks-istio-ingress
 ```
 
-NOTE:
+**NOTE:**
 
 - It will take few minutes to Enable Ingress Gateway to your cluster
 - The istio will be installed in `aks-istio-system` namespace
 
 ### 5.2-Configure Istio AKS Gateway
 
-Applications aren't accessible from outside the cluster by default after enabling the ingress gateway. To make an application accessible, map the sample deployment's ingress to the Istio ingress gateway using the following manifest:
+- Applications aren't accessible from outside the cluster by default after enabling the ingress gateway. To make an application accessible, map the sample deployment's ingress to the Istio ingress gateway using the following manifest:
 
 - Configure via YAML
 
 ```bash
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/shopping-istio-gateway.yaml
-
 ## [expected-output]
 # gateway.networking.istio.io/store-aio-gateway-external created
 # virtualservice.networking.istio.io/store-aio-vs-external created
@@ -114,7 +113,6 @@ export INGRESS_HOST_EXTERNAL=$(kubectl -n aks-istio-ingress get service aks-isti
 export INGRESS_PORT_EXTERNAL=$(kubectl -n aks-istio-ingress get service aks-istio-ingressgateway-external -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
 export GATEWAY_URL_EXTERNAL=$INGRESS_HOST_EXTERNAL:$INGRESS_PORT_EXTERNAL
 echo "http://$GATEWAY_URL_EXTERNAL/"
-
 ```
 
 ## 6-Deploy the Prometheus monitoring stack
@@ -186,18 +184,13 @@ istio:
 ### 7.2-Deploy Kiali
 
 ```bash
+# Deploy
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/kiali.yaml
 # Verify
 kubectl get svc -n aks-istio-system
 ```
 
 ### 7.3-Access the Kiali dashboard
-
-- NOTE: Generate token: to access
-
-```bash
-kubectl -n aks-istio-system create token kiali-service-account
-```
 
 - Expose Kiali dashboard service (Open another terminal and set environment as step `2-Prepare Environment`)
 
@@ -207,12 +200,17 @@ kubectl port-forward svc/kiali -n aks-istio-system 20001:20001
 
 Now we can visit: http://localhost:20001 to explore the Kiali
 
-## 8-Troubleshooting
+## 8-Clean up resource
+
+- Destroy the cluster, follow the `Delete AKS resources` of project [terraform-aks-cluster](../terraform-aks-cluster/)
+
+## 9-Troubleshooting
 
 For any issues, refer to [troubleshooting guide](./troubleshooting.md)
 
-## 9-Related document
+## 10-Related document
 
+- aks: https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress
 - kiali: https://github.com/kiali/kiali.io/commit/306fb8ac1d23928ad313c2511f04663c1e4f53b4
 - kiali: https://github.com/kiali/kiali/issues/4703
 - kiali: https://kiali.io/docs/installation/installation-guide/install-with-helm/
