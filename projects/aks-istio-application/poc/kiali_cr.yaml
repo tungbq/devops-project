@@ -1,0 +1,475 @@
+apiVersion: kiali.io/v1alpha1
+kind: Kiali
+metadata:
+  name: kiali
+  annotations:
+    ansible.sdk.operatorframework.io/verbosity: "1"
+spec:
+  additional_display_details:
+    - title: "API Documentation"
+      annotation: "kiali.io/api-spec"
+      icon_annotation: "kiali.io/api-type"
+
+  installation_tag: ""
+
+  istio_namespace: ""
+
+  version: "default"
+
+  api:
+    namespaces:
+      exclude:
+        - "^istio-operator"
+        - "^kube-.*"
+        - "^openshift.*"
+        - "^ibm.*"
+        - "^kiali-operator"
+      include: []
+      label_selector_exclude: ""
+      # default: label_selector_include is undefined
+      label_selector_include: "kiali.io/member-of=aks-istio-system"
+  auth:
+    strategy: ""
+    openid:
+      # default: additional_request_params is empty
+      additional_request_params:
+        openIdReqParam: "openIdReqParamValue"
+      # default: allowed_domains is an empty list
+      allowed_domains: ["allowed.domain"]
+      api_proxy: ""
+      api_proxy_ca_data: ""
+      api_token: "id_token"
+      authentication_timeout: 300
+      authorization_endpoint: ""
+      client_id: ""
+      disable_rbac: false
+      http_proxy: ""
+      https_proxy: ""
+      insecure_skip_verify_tls: false
+      issuer_uri: ""
+      scopes: ["openid", "profile", "email"]
+      username_claim: "sub"
+    openshift:
+      auth_timeout: 10
+      client_id_prefix: "kiali"
+      #token_inactivity_timeout:
+      #token_max_age:
+
+  clustering:
+    autodetect_secrets:
+      enabled: true
+      label: "kiali.io/multiCluster=true"
+    clusters: []
+    kiali_urls: []
+
+  # default: custom_dashboards is an empty list
+  custom_dashboards:
+    - name: "envoy"
+
+  deployment:
+    # default: accessible_namespaces is undefined
+    accessible_namespaces: ["my-mesh.*"]
+    # default: additional_service_yaml is empty
+    additional_service_yaml:
+      externalName: "kiali.example.com"
+    affinity:
+      # default: node is empty
+      node:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/e2e-az-name
+                  operator: In
+                  values:
+                    - e2e-az1
+                    - e2e-az2
+      # default: pod is empty
+      pod:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: security
+                  operator: In
+                  values:
+                    - S1
+            topologyKey: topology.kubernetes.io/zone
+      # default: pod_anti is empty
+      pod_anti:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: security
+                    operator: In
+                    values:
+                      - S2
+              topologyKey: topology.kubernetes.io/zone
+    # default: cluster_wide_access is undefined
+    cluster_wide_access: false
+    # default: configmap_annotations is empty
+    configmap_annotations:
+      strategy.spinnaker.io/versioned: "false"
+    # default: custom_secrets is an empty list
+    custom_secrets:
+      - name: "a-custom-secret"
+        mount: "/a-custom-secret-path"
+        optional: true
+    hpa:
+      api_version: ""
+      # default: spec is empty
+      spec:
+        maxReplicas: 2
+        minReplicas: 1
+        metrics:
+          - type: Resource
+            resource:
+              name: cpu
+              target:
+                type: Utilization
+                averageUtilization: 50
+    # default: host_aliases is an empty list
+    host_aliases:
+      - ip: "192.168.1.100"
+        hostnames:
+          - "foo.local"
+          - "bar.local"
+    image_digest: ""
+    image_name: ""
+    image_pull_policy: "IfNotPresent"
+    # default: image_pull_secrets is an empty list
+    image_pull_secrets: ["image.pull.secret"]
+    image_version: ""
+    ingress:
+      # default: additional_labels is empty
+      additional_labels:
+        ingressAdditionalLabel: "ingressAdditionalLabelValue"
+      class_name: "nginx"
+      # default: enabled is undefined
+      enabled: false
+      # default: override_yaml is undefined
+      override_yaml:
+        metadata:
+          annotations:
+            nginx.ingress.kubernetes.io/secure-backends: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        spec:
+          rules:
+            - http:
+                paths:
+                  - path: "/kiali"
+                    pathType: Prefix
+                    backend:
+                      service:
+                        name: "kiali"
+                        port:
+                          number: 20001
+    instance_name: "kiali"
+    logger:
+      log_level: "info"
+      log_format: "text"
+      sampler_rate: "1"
+      time_field_format: "2006-01-02T15:04:05Z07:00"
+    namespace: "aks-istio-system"
+    # default: node_selector is empty
+    node_selector:
+      nodeSelector: "nodeSelectorValue"
+    # default: pod_annotations is empty
+    pod_annotations:
+      podAnnotation: "podAnnotationValue"
+    # default: pod_labels is empty
+    pod_labels:
+      sidecar.istio.io/inject: "true"
+    priority_class_name: ""
+    replicas: 1
+    # default: resources is undefined
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "64Mi"
+      limits:
+        memory: "1Gi"
+    secret_name: "kiali"
+    security_context: {}
+    # default: service_annotations is empty
+    service_annotations:
+      svcAnnotation: "svcAnnotationValue"
+    # default: service_type is undefined
+    service_type: "NodePort"
+    # default: tolerations is an empty list
+    tolerations:
+      - key: "example-key"
+        operator: "Exists"
+        effect: "NoSchedule"
+    verbose_mode: "3"
+    version_label: ""
+    view_only_mode: false
+
+  external_services:
+    custom_dashboards:
+      discovery_auto_threshold: 10
+      discovery_enabled: "auto"
+      enabled: true
+      is_core: false
+      namespace_label: "namespace"
+      prometheus:
+        auth:
+          ca_file: ""
+          insecure_skip_verify: false
+          password: ""
+          token: ""
+          type: "none"
+          use_kiali_token: false
+          username: ""
+        cache_duration: 10
+        cache_enabled: true
+        cache_expiration: 300
+        # default: custom_headers is empty
+        custom_headers:
+          customHeader1: "customHeader1Value"
+        health_check_url: ""
+        is_core: true
+        # default: query_scope is empty
+        query_scope:
+          mesh_id: "mesh-1"
+          cluster: "cluster-east"
+        thanos_proxy:
+          enabled: false
+          retention_period: "7d"
+          scrape_interval: "30s"
+        url: http://kube-prometheus-stack-prometheus.aks-istio-system.svc.cluster.local:9090/"
+    grafana:
+      auth:
+        ca_file: ""
+        insecure_skip_verify: false
+        password: ""
+        token: ""
+        type: "none"
+        use_kiali_token: false
+        username: ""
+      dashboards:
+        - name: "Istio Service Dashboard"
+          variables:
+            namespace: "var-namespace"
+            service: "var-service"
+        - name: "Istio Workload Dashboard"
+          variables:
+            namespace: "var-namespace"
+            workload: "var-workload"
+        - name: "Istio Mesh Dashboard"
+        - name: "Istio Control Plane Dashboard"
+        - name: "Istio Performance Dashboard"
+        - name: "Istio Wasm Extension Dashboard"
+      enabled: true
+      health_check_url: ""
+      # default: in_cluster_url is undefined
+      in_cluster_url: ""
+      is_core: false
+      url: ""
+    istio:
+      component_status:
+        components:
+          - app_label: "istiod"
+            is_core: true
+            is_proxy: false
+          - app_label: "istio-ingressgateway"
+            is_core: true
+            is_proxy: true
+            # default: namespace is undefined
+            namespace: aks-istio-system
+          - app_label: "istio-egressgateway"
+            is_core: false
+            is_proxy: true
+            # default: namespace is undefined
+            namespace: aks-istio-system
+        enabled: true
+      config_map_name: "istio"
+      envoy_admin_local_port: 15000
+      gateway_api_classes: []
+      istio_api_enabled: true
+      # default: istio_canary_revision is undefined
+      istio_canary_revision:
+        current: "1-9-9"
+        upgrade: "1-10-2"
+      istio_identity_domain: "svc.cluster.local"
+      istio_injection_annotation: "sidecar.istio.io/inject"
+      istio_sidecar_annotation: "sidecar.istio.io/status"
+      istio_sidecar_injector_config_map_name: "istio-sidecar-injector"
+      istiod_deployment_name: "istiod"
+      istiod_pod_monitoring_port: 15014
+      root_namespace: ""
+      url_service_version: ""
+    prometheus:
+      auth:
+        ca_file: ""
+        insecure_skip_verify: false
+        password: ""
+        token: ""
+        type: "none"
+        use_kiali_token: false
+        username: ""
+      cache_duration: 10
+      cache_enabled: true
+      cache_expiration: 300
+      # default: custom_headers is empty
+      custom_headers:
+        customHeader1: "customHeader1Value"
+      health_check_url: ""
+      is_core: true
+      # default: query_scope is empty
+      query_scope:
+        mesh_id: "mesh-1"
+        cluster: "cluster-east"
+      thanos_proxy:
+        enabled: false
+        retention_period: "7d"
+        scrape_interval: "30s"
+      url: http://kube-prometheus-stack-prometheus.aks-istio-system.svc.cluster.local:9090/"
+    tracing:
+      auth:
+        ca_file: ""
+        insecure_skip_verify: false
+        password: ""
+        token: ""
+        type: "none"
+        use_kiali_token: false
+        username: ""
+      enabled: true
+      grpc_port: 9095
+      in_cluster_url: ""
+      is_core: false
+      namespace_selector: true
+      provider: "jaeger"
+      # default: query_scope is empty
+      query_scope:
+        mesh_id: "mesh-1"
+        cluster: "cluster-east"
+      query_timeout: 5
+      url: ""
+      use_grpc: true
+      whitelist_istio_system: ["jaeger-query", "istio-ingressgateway"]
+
+  health_config:
+    # default: rate is an empty list
+    rate:
+      - namespace: ".*"
+        kind: ".*"
+        name: ".*"
+        tolerance:
+          - protocol: "http"
+            direction: ".*"
+            code: "[1234]00"
+            degraded: 5
+            failure: 10
+
+  identity:
+    # default: cert_file is undefined
+    cert_file: ""
+    # default: private_key_file is undefined
+    private_key_file: ""
+
+  istio_labels:
+    app_label_name: "app"
+    injection_label_name: "istio-injection"
+    injection_label_rev: "istio.io/rev"
+    version_label_name: "version"
+
+  kiali_feature_flags:
+    certificates_information_indicators:
+      enabled: true
+      secrets:
+        - "cacerts"
+        - "istio-ca-secret"
+    clustering:
+      autodetect_secrets:
+        enabled: true
+        label: "kiali.io/multiCluster=true"
+      clusters: []
+      kiali_urls: []
+    disabled_features: []
+    istio_annotation_action: true
+    istio_injection_action: true
+    istio_upgrade_action: false
+    ui_defaults:
+      graph:
+        find_options:
+          - description: "Find: slow edges (> 1s)"
+            expression: "rt > 1000"
+          - description: "Find: unhealthy nodes"
+            expression: "! healthy"
+          - description: "Find: unknown nodes"
+            expression: "name = unknown"
+        hide_options:
+          - description: "Hide: healthy nodes"
+            expression: "healthy"
+          - description: "Hide: unknown nodes"
+            expression: "name = unknown"
+        traffic:
+          grpc: "requests"
+          http: "requests"
+          tcp: "sent"
+      metrics_per_refresh: "1m"
+      # default: metrics_inbound is undefined
+      metrics_inbound:
+        aggregations:
+          - display_name: "Istio Network"
+            label: "topology_istio_io_network"
+          - display_name: "Istio Revision"
+            label: "istio_io_rev"
+      # default: metrics_outbound is undefined
+      metrics_outbound:
+        aggregations:
+          - display_name: "Istio Network"
+            label: "topology_istio_io_network"
+          - display_name: "Istio Revision"
+            label: "istio_io_rev"
+      # default: namespaces is an empty list
+      namespaces: ["aks-istio-system"]
+      refresh_interval: "1m"
+    validations:
+      ignore: ["KIA1301"]
+      skip_wildcard_gateway_hosts: false
+
+  kubernetes_config:
+    burst: 200
+    cache_duration: 300
+    cache_token_namespace_duration: 10
+    excluded_workloads:
+      - "CronJob"
+      - "DeploymentConfig"
+      - "Job"
+      - "ReplicationController"
+    qps: 175
+
+  login_token:
+    expiration_seconds: 86400
+    signing_key: ""
+
+  server:
+    address: ""
+    audit_log: true
+    cors_allow_all: false
+    gzip_enabled: true
+    # default: node_port is undefined
+    node_port: 32475
+    observability:
+      metrics:
+        enabled: true
+        port: 9090
+      tracing:
+        collector_type: "jaeger"
+        collector_url: "http://jaeger-collector.aks-istio-system:14268/api/traces"
+        enabled: false
+        otel:
+          ca_name: ""
+          protocol: "http"
+          skip_verify: false
+          tls_enabled: false
+    port: 20001
+    profiler:
+      enabled: false
+    web_fqdn: ""
+    web_history_mode: ""
+    web_port: ""
+    web_root: ""
+    web_schema: ""

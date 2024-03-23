@@ -15,6 +15,11 @@ variable "node_count" {
   description = "The initial quantity of nodes for the node pool."
   default     = 2 # To reduce code
 }
+variable "vm_size" {
+  type        = string
+  description = "The VM size for the node pool."
+  default     = "Standard_D3_v2"
+}
 
 variable "msi_id" {
   type        = string

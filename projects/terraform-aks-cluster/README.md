@@ -30,23 +30,14 @@ chmod +x specify-service-cred.sh
 ./specify-service-cred.sh "your_subscription_id "your_service_principal_name"
 ```
 
-### Deploy cluster
+### Deploy cluster with terraform
 
+```bash
 ### Initialize Terraform
-
-```bash
 terraform init
-```
-
 ### Terraform plan
-
-```bash
 terraform plan -out main.tfplan
-```
-
 ### Terraform apply
-
-```bash
 terraform apply main.tfplan
 ```
 
@@ -60,9 +51,10 @@ terraform apply main.tfplan
 # Check cluster
 resource_group_name=$(terraform output -raw resource_group_name)
 az aks list --resource-group $resource_group_name --query "[].{\"K8s cluster name\":name}" --output table
-
-# Save config to local
-mkdir private_k8s_config
+# Save config to local VM
+if [ ! -d "private_k8s_config" ]; then
+    mkdir private_k8s_config
+fi
 echo "$(terraform output kube_config)" > ./private_k8s_config/azurek8s
 
 # Streamline your k8s config
