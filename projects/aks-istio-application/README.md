@@ -128,7 +128,7 @@ kubectl create ns aks-istio-system
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 # Deploy
-helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/istio_prom_values.yaml --namespace aks-istio-system
+helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/helm_manifests/istio_prom_values.yaml --namespace aks-istio-system
 # Check deployment
 kubectl get pod -n aks-istio-system
 ```
