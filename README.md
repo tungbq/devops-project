@@ -25,15 +25,16 @@
 
 ### Check out [projects](./projects/) list below 🔥
 
-| ID  | Project                                       | URL                                                                          | Status  |
-| :-- | :-------------------------------------------- | :--------------------------------------------------------------------------- | :------ |
-| 01  | Create k8s cluster aws with kubeadm           | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
-| 02  | Dockerize python application                  | [dockerize-python-application](./projects/dockerize-python-application/)     | ✔️ Done |
-| 03  | Nginx Static Website Local                    | [nginx-static-website-local](./projects/nginx-static-website-local/)         | ✔️ Done |
-| 04  | NodeJS project with CICD                      | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | ✔️ Done |
-| 05  | AWS 3 tiers web                               | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
-| 06  | Create Windows instance on AWS                | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
-| 07  | Create free VPN server on AWS                 | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)           | ✔️ Done |
-| 08  | Provision, deploy, monitor application on AKS | [terraform-aks-cluster](./projects/terraform-aks-cluster/)                   | ✔️ Done |
+| ID  | Project                                                         | URL                                                                          | Status  |
+| :-- | :-------------------------------------------------------------- | :--------------------------------------------------------------------------- | :------ |
+| 01  | Create k8s cluster aws with kubeadm                             | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
+| 02  | Dockerize python application                                    | [dockerize-python-application](./projects/dockerize-python-application/)     | ✔️ Done |
+| 03  | Nginx Static Website Local                                      | [nginx-static-website-local](./projects/nginx-static-website-local/)         | ✔️ Done |
+| 04  | NodeJS project with CICD                                        | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | ✔️ Done |
+| 05  | AWS 3 tiers web                                                 | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
+| 06  | Create Windows instance on AWS                                  | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
+| 07  | Create free VPN server on AWS                                   | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)           | ✔️ Done |
+| 08  | Provision, deploy, monitor application on AKS                   | [terraform-aks-cluster](./projects/terraform-aks-cluster/)                   | ✔️ Done |
+| 09  | Deploy microservices application on AKS with Istio service mesh | [aks-istio-application](./projects/aks-istio-application/)                   | ✔️ Done |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
