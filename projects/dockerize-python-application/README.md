@@ -1,40 +1,41 @@
 # Project: Dockerize python flask application
 
+## Overview
+
+### Introduction
+
 - This project helps us understand and know how to dockerize an application (python flask in this case)
-- Technology in used: `python`, `docker`, `flask`
+- Tech stack: `python`, `docker`, `flask`
+- To get basic concept of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
 
-# Prerequisite
+### Prerequisite
 
-## Basic knowledge about docker
+- You have docker installed on your machine
+- Basic knowledge about docker
 
-- https://www.docker.com/
-- https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md
+## 1-Install docker
 
-## Install docker
+- See: [how-to-install-docker](https://github.com/tungbq/devops-basic/tree/main/topics/docker#how-to-install-docker)
 
-- See: https://github.com/tungbq/devops-basic/tree/main/topics/docker#how-to-install-docker
-
-# Playaround with docker
-
-## Build the docker image
+## 2-Build the docker image
 
 - Run `docker build -t my-flask-app .`
 
-## Run the Docker container based on the image
+## 3-Run the Docker container based on the image
 
 - Run `docker run -p 5000:5000 my-flask-app`
 
-## Verify the result
+## 4-Verify the result
 
 - `curl localhost:5000`
 - Or open http://localhost:5000/ in your browser
 
-## AIO script could be found at
+## 5-Bonus
 
-- Run the script: [demo_project.sh](./demo_project.sh)
-
-# Bonus
+All in one script could be found at [demo_project.sh](./demo_project.sh)
 
 ## Related link
 
 - https://pypi.org/project/Flask/
+- https://www.docker.com/
+- https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md
