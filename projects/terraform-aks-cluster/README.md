@@ -30,23 +30,14 @@ chmod +x specify-service-cred.sh
 ./specify-service-cred.sh "your_subscription_id "your_service_principal_name"
 ```
 
-### Deploy cluster
+### Deploy cluster with terraform
 
+```bash
 ### Initialize Terraform
-
-```bash
 terraform init
-```
-
 ### Terraform plan
-
-```bash
 terraform plan -out main.tfplan
-```
-
 ### Terraform apply
-
-```bash
 terraform apply main.tfplan
 ```
 

@@ -4,6 +4,7 @@
 
 - Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus`, `Grafana`
 - To get basic concept of these tools, you could visit: [devops-basic](https://github.com/tungbq/devops-basic) repository
+- Tools: `helm`, `kubectl`, `azcli`
 
 ## 0-Environemnt
 
@@ -17,7 +18,15 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 
 Provision AKS cluster, follow this guide: [terraform-aks-cluster](../terraform-aks-cluster/), with some notes:
 
-- Update the VM type in main.tf to `D3v2` (more powerful)
+- Update the VM type of `vm_size` in values.tf to `Standard_D3_v2` (more powerful compute)
+
+```terraform
+variable "vm_size" {
+  type        = string
+  description = "The VM size for the node pool."
+  default     = "Standard_D3_v2"
+}
+```
 
 ## 2-Enable ASM add on on AKS
 
