@@ -56,7 +56,7 @@ kubectl label namespace aks-istio-system istio.io/rev=asm-1-18
 NOTE:
 
 - It will take few minutes to enable istio adon to your cluster
-- The istio will be install in `aks-istio-system` namespace
+- The istio will be installed in `aks-istio-system` namespace
 
 ## 4-Deploy microservices sample app
 
@@ -84,6 +84,11 @@ az aks mesh enable-ingress-gateway --resource-group $RESOURCE_GROUP --name $CLUS
 # Check
 kubectl get svc aks-istio-ingressgateway-external -n aks-istio-ingress
 ```
+
+NOTE:
+
+- It will take few minutes to Enable Ingress Gateway to your cluster
+- The istio will be installed in `aks-istio-system` namespace
 
 ### 5.2-Configure Istio AKS Gateway
 
