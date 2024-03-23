@@ -216,5 +216,8 @@ For any issues, refer to [troubleshooting guide](./troubleshooting.md)
 - kiali: https://github.com/kiali/kiali.io/commit/306fb8ac1d23928ad313c2511f04663c1e4f53b4
 - kiali: https://github.com/kiali/kiali/issues/4703
 - kiali: https://kiali.io/docs/installation/installation-guide/install-with-helm/
+- kiali: https://kiali.io/docs/installation/installation-guide/
 - prometheus: https://istio.io/latest/docs/ops/integrations/prometheus/#option-2-customized-scraping-configurations
 - kiali token: https://kiali.io/docs/faq/authentication/
+- kiali: https://kiali.io/docs/configuration/kialis.kiali.io/
+- kiali-cr: https://kiali.io/docs/installation/installation-guide/creating-updating-kiali-cr/
