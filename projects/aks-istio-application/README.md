@@ -1,10 +1,17 @@
-# Project: Deploy k8s application on AKS with Istio service mesh
+# Project: Deploy and monitor k8s application on AKS with Istio service mesh
 
 ## Overview
 
-- Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus`, `Grafana`
-- To get basic concept of these tools, you could visit: [devops-basic](https://github.com/tungbq/devops-basic) repository
-- Tools: `helm`, `kubectl`, `azcli`
+### Introduction
+
+This project help us practice Istio service mesh on AKS
+
+- Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus/Grafana`
+- To get basic concept of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+
+### Prerequisite
+
+- Tools: `helm>3.10`, `kubectl`, `azcli`
 
 ## 1-Provision a fresh AKS cluster
 

@@ -1,30 +1,33 @@
-# NodeJS project with CICD
+# Project: NodeJS project with CICD
 
-## Prerequisite
+## Overview
 
-### Basic knowledge about docker
+### Introduction
 
-- https://www.docker.com/
-- https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md
+- This project aims to develop a Node.js application with CI/CD integration.
+- Tech stack: `Node.js`, `Docker`
+- To gain a basic understanding of Docker, you could visit: [**Docker**](https://www.docker.com/) and [**devops-basic/docker**](https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md) repository
 
-### Install docker
+### Prerequisite
 
-- See: https://github.com/tungbq/devops-basic/tree/main/topics/docker#how-to-install-docker
+- Basic knowledge about Docker
+- Tools: `docker`, `curl`
 
-## Playaround with this project
+## 1-Setup Environment
 
-### Build the docker image
+### 1.1-Build Docker Image
 
 - Run `docker build -t node-backend .`
 
-### Run the Docker container based on the image
+### 1.2-Run Docker Container
 
 - Run `docker run -d -p 3001:3001 node-backend`
 
-### Verify the result
+### 1.3-Verify Installation
 
-- `curl localhost:3001`
-- Or open http://localhost:3001/ in your browser
+- Execute `curl localhost:3001` in your terminal
+- Alternatively, open [http://localhost:3001/](http://localhost:3001/) in your browser
 
-## Create CI pipeline for this app
-- Check the GitHub workflow: https://github.com/tungbq/devops-project/blob/main/.github/workflows/nodejs-cicd-pipeline.yml
+## 2-Continuous Integration (CI) Pipeline Setup
+
+- Check the GitHub workflow: [nodejs-cicd-pipeline.yml](https://github.com/tungbq/devops-project/blob/main/.github/workflows/nodejs-cicd-pipeline.yml)
