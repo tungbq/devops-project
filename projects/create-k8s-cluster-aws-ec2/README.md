@@ -1,34 +1,44 @@
-# Demo Instruction
+# Project: Create k8s cluster on EC2 instance using terraform
 
-## Create your own keypair
+## Overview
+
+### Introduction
+
+This project help us practice k8s/terraform/aws
+
+- Tech stack: `k8s`, `aws`, `shell`, `terraform`
+- To get basic concept of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+
+### Prerequisite
+
+- Tools: `terraform`, `kubectl`, `awscli`
+
+## 1-Create your own keypair
 
 - For example `k8sclusteraws`
 
-## Download keypair to your local PC
+## 2-Download keypair to your local PC
 
 - Using the .pem
 - Remember to note the key path
 
-## Update the private_key_path variable
+## 3-Update the private_key_path variable
 
 - Change this [file](./variables.tf)
 
-# Start terraform
+## 4-Provision cluster with terraform
 
+Remember to select 'yes' after checking all the information
+
+```bash
 ## Init
-
-- Run `terraform init`
-
+terraform init
 ## Plan
-
-- Run `terraform plan`
-
+terraform plan
 ## Apply
+terraform apply
+```
 
-- Run `terraform apply`
-
-## Remember to select 'yes' after checking all the information
-
-## Troubleshooting
+## 5-Troubleshooting
 
 - See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
