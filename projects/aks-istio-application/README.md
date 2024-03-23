@@ -33,8 +33,10 @@ variable "vm_size" {
 Once we have cluster available from step 1, get the `CLUSTER` and `RESOURCE_GROUP` from console to use in later steps:
 
 ```bash
-CLUSTER="cluster-clever-eagle" # change to yours
-RESOURCE_GROUP="rg-magical-buck" # change to yours
+# Change to yours
+CLUSTER="cluster-clever-eagle"
+# Change to yours
+RESOURCE_GROUP="rg-magical-buck"
 
 # Enable
 az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
@@ -48,6 +50,11 @@ kubectl label namespace default istio.io/rev=asm-1-18
 kubectl label namespace aks-istio-system istio.io/rev=asm-1-18
 ## apply for more labels as your needed...
 ```
+
+NOTE:
+
+- It will take few minutes to enable istio adon to your cluster
+- The istio will be install in `aks-istio-system` namespace
 
 ## 3-Deploy microservices sample app
 
