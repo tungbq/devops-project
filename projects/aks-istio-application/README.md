@@ -26,7 +26,7 @@ Declare the DevOps project path to use later in kubectl command
 
 ```bash
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
-export KUBECONFIG=$DEVOPS_PROJECT_PATH/terraform-aks-cluster/private_k8s_config/azurek8s
+export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
 ```
 
