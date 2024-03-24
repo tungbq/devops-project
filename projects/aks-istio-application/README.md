@@ -233,6 +233,9 @@ Now we can visualize our application/service graph with Kiali
 - Kiali Service Graph
   ![grafana_istio_dashboard](./assets/kiali_visualize_all.png)
 
+- Kiali App Graph with response time
+  ![grafana_istio_dashboard](./assets/kiali_visualize_app_graph.png)
+
 ## 8-Clean up resource
 
 - Destroy the cluster, follow the `Delete AKS resources` of project [terraform-aks-cluster](../terraform-aks-cluster/)
