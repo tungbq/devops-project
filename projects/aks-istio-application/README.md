@@ -125,6 +125,14 @@ echo "http://$GATEWAY_URL_EXTERNAL/"
 At this point we could visit the public application frontend page via Gateway URL: http://$GATEWAY_URL_EXTERNAL/, result looks like:
 ![gateway-url-external](./assets/connect_to_aks_external_gateway.png)
 
+### 5.4-Test the frontend page (optional)
+
+- Run this script to simulate the external access to the frontend page
+
+```bash
+$DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testing.sh $GATEWAY_URL_EXTERNAL
+```
+
 ## 6-Deploy the Prometheus monitoring stack
 
 ### 6.1-Deploy aks-istio-system
