@@ -22,8 +22,6 @@ az account set --subscription $subscription_id
 ### Create a service principal
 
 ```bash
-chmod +x specify-service-cred.sh
-
 # Run the scipt with you service name and subscription ID
 ## your_subscription_id: input your target Subscription ID
 ## your_service_principal_name: input your target Service Principal Name

@@ -122,6 +122,17 @@ export GATEWAY_URL_EXTERNAL=$INGRESS_HOST_EXTERNAL:$INGRESS_PORT_EXTERNAL
 echo "http://$GATEWAY_URL_EXTERNAL/"
 ```
 
+At this point we could visit the public application frontend page via Gateway URL: http://$GATEWAY_URL_EXTERNAL/, result looks like:
+![gateway-url-external](./assets/connect_to_aks_external_gateway.png)
+
+### 5.4-Test the frontend page (optional)
+
+- Run this script to simulate the external access to the frontend page
+
+```bash
+$DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testing.sh $GATEWAY_URL_EXTERNAL
+```
+
 ## 6-Deploy the Prometheus monitoring stack
 
 ### 6.1-Deploy aks-istio-system
@@ -167,7 +178,15 @@ Now we can login to http://localhost:4000 (The default username/password for Gra
 $DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/grafana-add-istio-dashboard.sh
 ```
 
-- Access Grafana: http://localhost:4000/ to verify and expore the Istio dashboard
+### 6.4-Explore the Grafana dashboard
+
+Access Grafana: http://localhost:4000/ to verify and expore the Istio dashboard
+
+- Grafana Istio Dashboard list
+  ![grafana_istio_dashboard](./assets/grafana_istio_dashboard.png)
+
+- Grafana Istio Service Dashboard
+  ![grafana_istio_service_dashboard](./assets/grafana_istio_service_dashboard.png)
 
 ## 7-Deploy Kiali
 
@@ -207,6 +226,16 @@ kubectl port-forward svc/kiali -n aks-istio-system 20001:20001
 
 Now we can visit: http://localhost:20001 to explore the Kiali
 
+### 7.4-Explore the Kiali UI
+
+Now we can visualize our application/service graph with Kiali
+
+- Kiali Service Graph
+  ![grafana_istio_dashboard](./assets/kiali_visualize_all.png)
+
+- Kiali App Graph with response time
+  ![grafana_istio_dashboard](./assets/kiali_visualize_app_graph.png)
+
 ## 8-Clean up resource
 
 - Destroy the cluster, follow the `Delete AKS resources` of project [terraform-aks-cluster](../terraform-aks-cluster/)
@@ -218,6 +247,7 @@ For any issues, refer to [troubleshooting guide](./troubleshooting.md)
 ## 10-Related document
 
 - aks: https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress
+- aks/istio: https://github.com/Azure-Samples/aks-store-demo/tree/main/manifests/istio
 - kiali: https://github.com/kiali/kiali.io/commit/306fb8ac1d23928ad313c2511f04663c1e4f53b4
 - kiali: https://github.com/kiali/kiali/issues/4703
 - kiali: https://kiali.io/docs/installation/installation-guide/install-with-helm/
