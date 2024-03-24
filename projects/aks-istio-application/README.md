@@ -178,7 +178,15 @@ Now we can login to http://localhost:4000 (The default username/password for Gra
 $DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/grafana-add-istio-dashboard.sh
 ```
 
-- Access Grafana: http://localhost:4000/ to verify and expore the Istio dashboard
+### 6.4-Explore the Grafana dashboard
+
+Access Grafana: http://localhost:4000/ to verify and expore the Istio dashboard
+
+- Grafana Istio Dashboard list
+  ![grafana_istio_dashboard](./assets/grafana_istio_dashboard.png)
+
+- Grafana Istio Service Dashboard
+  ![grafana_istio_service_dashboard](./assets/grafana_istio_service_dashboard.png)
 
 ## 7-Deploy Kiali
 
@@ -217,6 +225,13 @@ kubectl port-forward svc/kiali -n aks-istio-system 20001:20001
 ```
 
 Now we can visit: http://localhost:20001 to explore the Kiali
+
+### 7.4-Explore the Kiali UI
+
+Now we can visualize our application/service graph with Kiali
+
+- Kiali Service Graph
+  ![grafana_istio_dashboard](./assets/kiali_visualize_all.png)
 
 ## 8-Clean up resource
 
