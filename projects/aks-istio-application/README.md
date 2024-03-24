@@ -218,6 +218,7 @@ For any issues, refer to [troubleshooting guide](./troubleshooting.md)
 ## 10-Related document
 
 - aks: https://learn.microsoft.com/en-us/azure/aks/istio-deploy-ingress
+- aks/istio: https://github.com/Azure-Samples/aks-store-demo/tree/main/manifests/istio
 - kiali: https://github.com/kiali/kiali.io/commit/306fb8ac1d23928ad313c2511f04663c1e4f53b4
 - kiali: https://github.com/kiali/kiali/issues/4703
 - kiali: https://kiali.io/docs/installation/installation-guide/install-with-helm/
