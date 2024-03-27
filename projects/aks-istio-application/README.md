@@ -35,6 +35,10 @@ variable "vm_size" {
 - When we open new terminal, we should run these commands to set environment again
 
 ```bash
+# Change to yours
+export CLUSTER="cluster-boss-moth"
+# Change to yours
+export RESOURCE_GROUP="rg-just-gar"
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
 export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
@@ -45,11 +49,6 @@ kubectl get nodes
 Once we have cluster available from step 1, get the `CLUSTER` and `RESOURCE_GROUP` from console to use in later steps:
 
 ```bash
-# Change to yours
-CLUSTER="cluster-clever-eagle"
-# Change to yours
-RESOURCE_GROUP="rg-magical-buck"
-
 # Enable
 az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
 # Verify
