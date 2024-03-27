@@ -57,8 +57,11 @@ az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}  --query 'servi
 kubectl get pods -n aks-istio-system
 
 # Enable side car injection for a namespace, if we deploy in another namespace, add more
-kubectl label namespace default istio.io/rev=asm-1-19
-kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
+## Get current version
+az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} | grep asm
+## Set base on version
+kubectl label namespace default istio.io/rev=asm-1-20 --overwrite
+kubectl label namespace aks-istio-system istio.io/rev=asm-1-20 --overwrite
 ## apply for more labels as your needed...
 ```
 
@@ -76,6 +79,7 @@ kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
 # Deploy shopping app
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/shopping.yaml
 # Check pod (should have at least 2 containers in a pod (including the Envoy side car))
+## Will not work when specifying `-n aks-istio-system`
 kubectl get pod
 # Check services
 kubectl get svc
