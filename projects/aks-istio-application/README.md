@@ -35,6 +35,10 @@ variable "vm_size" {
 - When we open new terminal, we should run these commands to set environment again
 
 ```bash
+# Change to yours
+export CLUSTER="cluster-boss-moth"
+# Change to yours
+export RESOURCE_GROUP="rg-just-gar"
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
 export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
@@ -45,11 +49,6 @@ kubectl get nodes
 Once we have cluster available from step 1, get the `CLUSTER` and `RESOURCE_GROUP` from console to use in later steps:
 
 ```bash
-# Change to yours
-CLUSTER="cluster-clever-eagle"
-# Change to yours
-RESOURCE_GROUP="rg-magical-buck"
-
 # Enable
 az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
 # Verify
@@ -58,8 +57,11 @@ az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}  --query 'servi
 kubectl get pods -n aks-istio-system
 
 # Enable side car injection for a namespace, if we deploy in another namespace, add more
-kubectl label namespace default istio.io/rev=asm-1-19
-kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
+## Get current version
+az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} | grep asm
+## Set base on version
+kubectl label namespace default istio.io/rev=asm-1-20 --overwrite
+kubectl label namespace aks-istio-system istio.io/rev=asm-1-20 --overwrite
 ## apply for more labels as your needed...
 ```
 
@@ -77,6 +79,7 @@ kubectl label namespace aks-istio-system istio.io/rev=asm-1-19
 # Deploy shopping app
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/aks-istio-application/k8s_manifests/shopping.yaml
 # Check pod (should have at least 2 containers in a pod (including the Envoy side car))
+## Will not work when specifying `-n aks-istio-system`
 kubectl get pod
 # Check services
 kubectl get svc
