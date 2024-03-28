@@ -36,9 +36,9 @@ variable "vm_size" {
 
 ```bash
 # Change to yours
-export CLUSTER="cluster-boss-moth"
+export CLUSTER="cluster-grown-crane"
 # Change to yours
-export RESOURCE_GROUP="rg-just-gar"
+export RESOURCE_GROUP="rg-content-foxhound"
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
 export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
