@@ -77,6 +77,17 @@ Once completed, you could archive the results like below:
 
 If you could reach to this point, congratulations for your effort! Happy coding!
 
+## Summary
+
+To use Nginx ingress to serve the external request and then forward to the application inside Istio service mesh, we could
+
+- Enable the service mesh as usual
+- Deploy the application as previous project
+- (\*)Enable Istio side-car injection feature to the namespace that we deploy the `nginx` service/ingress
+- (\*)Create `nginx.conf` file to route the traffic to frontend service
+- Deploy nginx as usual, then get the `External-IP` from nginx service
+- Visit the `External-IP` page then enjoy the result
+
 ## Document
 
 - https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
