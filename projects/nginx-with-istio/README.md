@@ -33,7 +33,7 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 ### 2-Enable istio
 
 - Istio (aks-istio-system ns) and deploy app (default ns)
-- Check [aks-istio-application](../aks-istio-application/) - skip step #5
+- Check [aks-istio-application](../aks-istio-application/) - Only step #1->#4 (skip step #5 and later)
 - Enable side car enjection for nginx
 
 ```bash
@@ -49,5 +49,13 @@ kubectl get namespaces -A --show-labels
 ### 3-Nginx deploy
 
 ```bash
-kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio/k8s_manifest/nginx-ingress.yaml
+kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio/k8s_manifest/nginx_deployment.yaml
 ```
+
+### 4-Deploy Prometheus
+
+- Check [aks-istio-application](../aks-istio-application/) - step #6
+
+### 5-Deploy kiali
+
+- Check [aks-istio-application](../aks-istio-application/) - step #7
