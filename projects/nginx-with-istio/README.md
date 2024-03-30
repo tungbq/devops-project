@@ -69,3 +69,12 @@ Open browser then check the webpage `http://<EXTERNAL-IP>`
 
 - Check [aks-istio-application](../aks-istio-application/) - step #6
 - Expose the port with port-forward then visit Grafana to get application insights
+- Import the Istio dashboards to Grafanas
+- Load testing to the frontend page, run
+
+```bash
+# EXTERNAL_IP get from nginx service
+$DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testing.sh "$EXTERNAL_IP" "0.1"
+
+# 0.1 is the sleep time between the curl commands, to do more load, reduce that value
+```
