@@ -1,10 +1,11 @@
 # Project: NodeJS project with CICD
 
+This project aims to develop a Node.js application with CI/CD integration.
+
 ## Overview
 
 ### Introduction
 
-- This project aims to develop a Node.js application with CI/CD integration.
 - Tech stack: `Node.js`, `Docker`
 - To gain a basic understanding of Docker, you could visit: [**Docker**](https://www.docker.com/) and [**devops-basic/docker**](https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md) repository
 

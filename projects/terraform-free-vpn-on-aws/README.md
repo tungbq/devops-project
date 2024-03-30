@@ -1,8 +1,21 @@
 # Project: Create and Connect to a free VPN server on AWS with Terraform
 
-## 1-Overview
+This project help you launch your own Open VPN server on AWS
 
-- This project help you launch your own Open VPN server on AWS
+## Overview
+
+### Introduction
+
+- Tech stack: `AWS`, `terraform`, `VPN`
+- To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+
+### Prerequisite
+
+- An AWS account
+- AWS CLI installed
+- Terraform installed
+
+## 1-Overview
 
 ## 2-Prerequisite
 

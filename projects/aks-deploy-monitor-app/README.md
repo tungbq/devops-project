@@ -1,8 +1,18 @@
-# Project: Provisioning AKS Cluster using Terraform
+# Project: Deploy microservies application on AKS and montitor with Prometheus
 
-## Prerequisite
+This project aims to deploy a microservices application on Azure Kubernetes Service (AKS) and set up monitoring using Prometheus and Grafana.
 
-An Azure account with an active subscription
+## Overview
+
+### Introduction
+
+- Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `Prometheus/Grafana`
+- To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+
+### Prerequisite
+
+- Tools: `helm>3.10`, `kubectl`, `azcli`
+- An Azure account with an active subscription
 
 ## 1-Provision a fresh AKS cluster
 

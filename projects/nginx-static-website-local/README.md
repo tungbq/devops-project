@@ -1,10 +1,11 @@
 # Project: Build static website with Nginx
 
+This project helps us learn Nginx and create a static website.
+
 ## Overview
 
 ### Introduction
 
-- This project helps us learn Nginx and create a static website.
 - Tech stack: `Nginx`, `Docker`
 - To get basic knowledge about Docker, you could visit: [**Docker**](https://www.docker.com/) and [**devops-basic/docker**](https://github.com/tungbq/devops-basic/blob/main/topics/docker/README.md) repository
 
