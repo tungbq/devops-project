@@ -15,18 +15,19 @@
 
 ### Check out [projects](./projects/) list below 🔥
 
-| ID  | Project                                           | URL                                                                          | Status  |
-| :-- | :------------------------------------------------ | :--------------------------------------------------------------------------- | :------ |
-| 01  | Dockerize python application                      | [dockerize-python-application](./projects/dockerize-python-application/)     | ✔️ Done |
-| 02  | Nginx Static Website Local                        | [nginx-static-website-local](./projects/nginx-static-website-local/)         | ✔️ Done |
-| 03  | NodeJS project with CICD                          | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | ✔️ Done |
-| 04  | AWS 3 tiers web                                   | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
-| 05  | Create Windows instance on AWS                    | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
-| 06  | Create k8s cluster aws with kubeadm               | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
-| 07  | Create free VPN server on AWS                     | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)           | ✔️ Done |
-| 08  | Provision, deploy, monitor application on AKS     | [terraform-aks-cluster](./projects/terraform-aks-cluster/)                   | ✔️ Done |
-| 09  | Deploy application on AKS with Istio service mesh | [aks-istio-application](./projects/aks-istio-application/)                   | ✔️ Done |
-| 10  | Nginx ingress with Istio service mesh on AKS      | [nginx-with-istio-on-aks](./projects/nginx-with-istio-on-aks/)               | ✔️ Done |
+| ID  | Project                                      | URL                                                                          | Status  |
+| :-- | :------------------------------------------- | :--------------------------------------------------------------------------- | :------ |
+| 01  | Dockerize python application                 | [dockerize-python-application](./projects/dockerize-python-application/)     | ✔️ Done |
+| 02  | Nginx Static Website Local                   | [nginx-static-website-local](./projects/nginx-static-website-local/)         | ✔️ Done |
+| 03  | NodeJS project with CICD                     | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                     | ✔️ Done |
+| 04  | AWS 3 tiers web                              | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
+| 05  | Create Windows instance on AWS               | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
+| 06  | Create k8s cluster aws with kubeadm          | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
+| 07  | Create free VPN server on AWS                | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)           | ✔️ Done |
+| 08  | Provistion fresh AKS cluster with Terraform  | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)       | ✔️ Done |
+| 09  | Deploy and monitor application on AKS        | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                 | ✔️ Done |
+| 10  | Deploy application on AKS with Istio         | [aks-istio-application](./projects/aks-istio-application/)                   | ✔️ Done |
+| 11  | Nginx ingress with Istio service mesh on AKS | [nginx-with-istio-on-aks](./projects/nginx-with-istio-on-aks/)               | ✔️ Done |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 
