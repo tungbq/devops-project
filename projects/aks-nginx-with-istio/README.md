@@ -23,7 +23,7 @@ This project focuses on implementing Nginx Ingress as an entry point to an Istio
 ### 0-Prepare environment
 
 ```bash
-export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project"
+export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
 ```
 
 ### 1-Deploy fresh cluster
