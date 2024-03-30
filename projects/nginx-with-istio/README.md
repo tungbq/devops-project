@@ -48,29 +48,28 @@ kubectl get namespaces -A --show-labels
 
 ### 3-Nginx deploy
 
-#### Deploy
+- Deploy
 
 ```bash
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio/k8s_manifest/nginx_deployment.yaml
 ```
 
-#### Get the external nginx IP
+- Get the external nginx IP
 
 ```bash
 kubectl get svc | grep nginx
 # Check the EXTERNAL-IP
 ```
 
-#### Access
+- Access
+  - Open browser then check the webpage `http://<EXTERNAL-IP>`
 
-Open browser then check the webpage `http://<EXTERNAL-IP>`
+### 4-Monitor the application with Prometheus & Grafana
 
-### 4-Deploy Prometheus & Grafana
-
-- Check [aks-istio-application](../aks-istio-application/) - step #6
-- Expose the port with port-forward then visit Grafana to get application insights
-- Import the Istio dashboards to Grafanas
-- Load testing to the frontend page, run
+- Deploy Prometheus/Grafana, see: [aks-istio-application](../aks-istio-application/) - step #6
+  - Expose the port with port-forward then visit Grafana to get application insights
+  - Import the Istio dashboards to Grafana
+- Perform load testing to the frontend main page, by running:
 
 ```bash
 # EXTERNAL_IP get from nginx service
