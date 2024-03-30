@@ -15,7 +15,7 @@ This project help us practice Istio service mesh on AKS
 
 ## 1-Provision a fresh AKS cluster
 
-Provision AKS cluster, follow section 1 `1-Provision a fresh AKS cluster` in this project: [terraform-fresh-aks-cluster](https://github.com/tungbq/devops-project/tree/main/projects/terraform-fresh-aks-cluster#1-provision-a-fresh-aks-cluster), with some notes:
+- Provision a fresh AKS cluster by following [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/), with some notes:
 
 - Update the VM type of `vm_size` in values.tf to `Standard_D3_v2` (more powerful compute)
 

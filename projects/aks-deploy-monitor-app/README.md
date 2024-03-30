@@ -6,7 +6,7 @@ An Azure account with an active subscription
 
 ## 1-Provision a fresh AKS cluster
 
-- Follow [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
+- Provision a fresh AKS cluster by following [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
 
 ## 2-Deploy the sample application on AKS cluster
 

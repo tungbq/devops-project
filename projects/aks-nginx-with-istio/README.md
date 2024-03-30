@@ -15,7 +15,7 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 
 ### 1-Deploy fresh cluster
 
-- Check [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
+- Provision a fresh AKS cluster by following [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
 
 ### 2-Enable istio
 
