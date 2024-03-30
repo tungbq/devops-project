@@ -1,10 +1,10 @@
 # Project: Deploy microservies application on AKS and montitor with Prometheus
 
+This project aims to deploy a microservices application on Azure Kubernetes Service (AKS) and set up monitoring using Prometheus and Grafana.
+
 ## Overview
 
 ### Introduction
-
-This project aims to deploy a microservices application on Azure Kubernetes Service (AKS) and set up monitoring using Prometheus and Grafana.
 
 - Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus/Grafana`
 - To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository

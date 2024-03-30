@@ -1,10 +1,11 @@
 # Project: Dockerize python flask application
 
+This project helps us understand and know how to dockerize an application (python flask in this case)
+
 ## Overview
 
 ### Introduction
 
-- This project helps us understand and know how to dockerize an application (python flask in this case)
 - Tech stack: `python`, `docker`, `flask`
 - To get basic concept of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
 

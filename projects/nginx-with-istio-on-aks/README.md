@@ -1,10 +1,10 @@
 # Project: Nginx Ingress with Istio service mesh
 
+This project focuses on implementing Nginx Ingress as an entry point to an Istio service mesh on AKS
+
 ## Overview
 
 ### Introduction
-
-This project focuses on implementing Nginx Ingress as an entry point to an Istio service mesh on AKS
 
 - Tech stack: `Nginx`, `Istio`, `Kubernetes`, `AKS`
 - To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
