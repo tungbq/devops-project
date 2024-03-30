@@ -8,7 +8,6 @@ This project help you launch your own Open VPN server on AWS
 
 - Tech stack: `AWS`, `terraform`, `VPN`
 - To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
-- To get started with Azure and Terraform, you could visit: [**Azure Terraform Documentation**](https://docs.microsoft.com/en-us/azure/developer/terraform/)
 
 ### Prerequisite
 
