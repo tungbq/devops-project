@@ -6,7 +6,7 @@ This project aims to deploy a microservices application on Azure Kubernetes Serv
 
 ### Introduction
 
-- Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus/Grafana`
+- Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `Prometheus/Grafana`
 - To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
 
 ### Prerequisite
