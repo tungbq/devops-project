@@ -30,7 +30,7 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 ### 2-Enable istio
 
 - Istio (aks-istio-system ns) and deploy app (default ns)
-- Check [aks-istio-application](../aks-istio-application/)
+- Check [aks-istio-application](../aks-istio-application/) - skip step #5
 - Enable side car enjection for nginx
 
 ```bash
