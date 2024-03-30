@@ -7,19 +7,9 @@
   <a href="https://github.com/tungbq/devops-project/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tungbq/devops-project"/></a>
 </p>
 
-## Hit the Star! ⭐
-
-- If you find this repository helpful, kindly consider showing your appreciation by giving it a star ⭐ Thanks! 💖
-
 ## Basic of DevOps
 
-- To get the basic concepts of DevOps and related tools, visit: [tungbq/devops-basic](https://github.com/tungbq/devops-basic)
-
-## Contributing
-
-- See: [CONTRIBUTING.md](./CONTRIBUTING.md)
-- Looking for the issue to work on? Check the list of our open issues [**good first issue**](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- Feel free to open a new issue if you want to request more content about DevOps
+- To get the basic concepts of DevOps and related tools, visit: [**tungbq/devops-basic**](https://github.com/tungbq/devops-basic)
 
 ## Projects
 
@@ -39,3 +29,10 @@
 | 10  | Nginx ingress with Istio service mesh on AKS      | [nginx-with-istio-on-aks](./projects/nginx-with-istio-on-aks/)               | ✔️ Done |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
+
+## Contributing
+
+- If you find this repository helpful, kindly consider showing your appreciation by giving it a star ⭐ Thanks! 💖
+- See: [CONTRIBUTING.md](./CONTRIBUTING.md)
+- Looking for the issue to work on? Check the list of our open issues [**good first issue**](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- Feel free to open a new issue if you want to request more content about DevOps
