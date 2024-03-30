@@ -77,6 +77,11 @@ Once completed, you could archive the results like below:
 
 If you could reach to this point, congratulations for your effort! Happy coding!
 
+## 6-Cleanup
+
+- Once done, destroy the cluster to free up resource and avoid upcomming Azure cost ($$$)
+- Follow the `Delete AKS resources` section of project [terraform-aks-cluster](../terraform-aks-cluster/)
+
 ## Summary
 
 To use Nginx ingress to serve the external request and then forward to the application inside Istio service mesh, we could
