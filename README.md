@@ -23,6 +23,7 @@
 | 04  | AWS 3 tiers web                              | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                         | ✔️ Done |
 | 05  | Create Windows instance on AWS               | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/) | ✔️ Done |
 | 06  | Create k8s cluster aws with kubeadm          | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
+| 06  | Create k8s cluster aws with kubeadm          | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)         | ✔️ Done |
 | 07  | Create free VPN server on AWS                | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)           | ✔️ Done |
 | 08  | Provistion fresh AKS cluster with Terraform  | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)       | ✔️ Done |
 | 09  | Deploy and monitor application on AKS        | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                 | ✔️ Done |
