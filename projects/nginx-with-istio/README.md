@@ -65,10 +65,7 @@ kubectl get svc | grep nginx
 
 Open browser then check the webpage `http://<EXTERNAL-IP>`
 
-### 4-Deploy Prometheus
+### 4-Deploy Prometheus & Grafana
 
 - Check [aks-istio-application](../aks-istio-application/) - step #6
-
-### 5-Deploy kiali
-
-- Check [aks-istio-application](../aks-istio-application/) - step #7
+- Expose the port with port-forward then visit Grafana to get application insights
