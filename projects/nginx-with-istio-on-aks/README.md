@@ -1,22 +1,9 @@
 # Nginx Ingress with Istio service mesh
 
-## Doc
-
-- https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
-- https://platform9.com/learn/v1.0/tutorials/nginix-controller-via-yaml
-- https://gist.github.com/petitviolet/d36f33d145d0bbf4b54eb187b79d0244
-- https://cloud.google.com/endpoints/docs/openapi/custom-nginx
-
 ## Architecture
 
 - Refer: https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
-- Traefik Ingress can be implemented as an entry point to an Istio service mesh
-
-## Prerequisite
-
-- Deploy fresh cluster: devops-project/projects/terraform-aks-cluster (at least `D3_v2` node to avoid insufficent CPU issue)
-- Enable istio (aks-istio-system ns) and deploy app (default ns): devops-project/projects/aks-istio-application (Can skip step 5 - istio gateways)
-- Integrate Nginx with istio
+- Nginx Ingress is implemented as an entry point to an Istio service mesh
 
 ## Steps
 
@@ -73,7 +60,14 @@ kubectl get svc | grep nginx
 
 ```bash
 # EXTERNAL_IP get from nginx service
-$DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testing.sh "$EXTERNAL_IP" "0.1"
+$DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testing.sh "$EXTERNAL_IP" "0.2"
 
-# 0.1 is the sleep time between the curl commands, to do more load, reduce that value
+# 0.2 is the sleep time between the curl commands, to do more load, reduce that value like 0.1
 ```
+
+## Document
+
+- https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
+- https://platform9.com/learn/v1.0/tutorials/nginix-controller-via-yaml
+- https://gist.github.com/petitviolet/d36f33d145d0bbf4b54eb187b79d0244
+- https://cloud.google.com/endpoints/docs/openapi/custom-nginx
