@@ -4,10 +4,10 @@
 
 ### Introduction
 
-This project help us practice Istio service mesh on AKS
+This project helps us practice Istio service mesh on AKS.
 
 - Tech stack: `Azure`, `AKS`, `Terraform`, `k8s`, `helm`, `istio`, `Prometheus/Grafana`
-- To get basic concept of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+- To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
 
 ### Prerequisite
 
