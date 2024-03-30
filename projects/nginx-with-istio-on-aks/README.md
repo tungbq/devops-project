@@ -65,6 +65,18 @@ $DEVOPS_PROJECT_PATH/projects/aks-istio-application/scripts/frontend_load_testin
 # 0.2 is the sleep time between the curl commands, to do more load, reduce that value like 0.1
 ```
 
+## 5-Result
+
+Once completed, you could archive the results like below:
+
+- Frontend webpage of the application
+  ![front-end-nginx-based](./assets/front-end-nginx-based.png)
+
+- Grafana Istio Service Dashboard for application insights
+  ![grafana-istio-nginx-frontend-monitor](./assets/grafana-istio-nginx-frontend-monitor.png)
+
+If you could reach to this point, congratulations for your effort! Happy coding!
+
 ## Document
 
 - https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
