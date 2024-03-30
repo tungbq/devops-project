@@ -1,8 +1,10 @@
 # Project: Create and Connect to a free VPN server on AWS with Terraform
 
+This project help you launch your own Open VPN server on AWS
+
 ## 1-Overview
 
-- This project help you launch your own Open VPN server on AWS
+- Tech stack: `AWS`, `terraform`, `VPN`
 
 ## 2-Prerequisite
 

@@ -1,10 +1,11 @@
 # Project: Provisioning AKS Cluster using Terraform
 
+This project focuses on provisioning an AKS (Azure Kubernetes Service) cluster using Terraform.
+
 ## Overview
 
 ### Introduction
 
-- This project focuses on provisioning an AKS (Azure Kubernetes Service) cluster using Terraform.
 - Tech stack: `Terraform`, `Azure CLI`, `kubectl`
 - To get started with Azure and Terraform, you could visit: [**Azure Terraform Documentation**](https://docs.microsoft.com/en-us/azure/developer/terraform/)
 
