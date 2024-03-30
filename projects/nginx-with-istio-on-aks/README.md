@@ -51,7 +51,7 @@ kubectl get namespaces -A --show-labels
 - Deploy
 
 ```bash
-kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio/k8s_manifest/nginx_deployment.yaml
+kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio-on-aks/k8s_manifest/nginx_deployment.yaml
 ```
 
 - Get the external nginx IP
