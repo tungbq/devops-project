@@ -15,7 +15,7 @@ This project help us practice Istio service mesh on AKS
 
 ## 1-Provision a fresh AKS cluster
 
-Provision AKS cluster, follow section 1 `1-Provision a fresh AKS cluster` in this project: [terraform-aks-cluster](https://github.com/tungbq/devops-project/tree/main/projects/terraform-aks-cluster#1-provision-a-fresh-aks-cluster), with some notes:
+- Provision a fresh AKS cluster by following [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/), with some notes:
 
 - Update the VM type of `vm_size` in values.tf to `Standard_D3_v2` (more powerful compute)
 
@@ -40,7 +40,7 @@ export CLUSTER="cluster-golden-sturgeon"
 # Change to yours
 export RESOURCE_GROUP="rg-genuine-longhorn"
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
-export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
+export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-fresh-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
 ```
 
@@ -241,7 +241,7 @@ Now we can visualize our application/service graph with Kiali
 
 ## 8-Clean up resource
 
-- Destroy the cluster, follow the `Delete AKS resources` of project [terraform-aks-cluster](../terraform-aks-cluster/)
+- Destroy the cluster, follow the `Delete AKS resources` of project [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
 
 ## 9-Troubleshooting
 

@@ -15,7 +15,7 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 
 ### 1-Deploy fresh cluster
 
-- Check [terraform-aks-cluster](../terraform-aks-cluster/)
+- Provision a fresh AKS cluster by following [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
 
 ### 2-Enable istio
 
@@ -80,7 +80,7 @@ If you could reach to this point, congratulations for your effort! Happy coding!
 ## 6-Cleanup
 
 - Once done, destroy the cluster to free up resource and avoid upcomming Azure cost ($$$)
-- Follow the `Delete AKS resources` section of project [terraform-aks-cluster](../terraform-aks-cluster/)
+- Follow the `Delete AKS resources` section of project [terraform-fresh-aks-cluster](../terraform-fresh-aks-cluster/)
 
 ## Summary
 
