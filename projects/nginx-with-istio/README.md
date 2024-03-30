@@ -48,9 +48,22 @@ kubectl get namespaces -A --show-labels
 
 ### 3-Nginx deploy
 
+#### Deploy
+
 ```bash
 kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio/k8s_manifest/nginx_deployment.yaml
 ```
+
+#### Get the external nginx IP
+
+```bash
+kubectl get svc | grep nginx
+# Check the EXTERNAL-IP
+```
+
+#### Access
+
+Open browser then check the webpage `http://<EXTERNAL-IP>`
 
 ### 4-Deploy Prometheus
 
