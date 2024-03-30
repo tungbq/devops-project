@@ -36,9 +36,9 @@ variable "vm_size" {
 
 ```bash
 # Change to yours
-export CLUSTER="cluster-boss-moth"
+export CLUSTER="cluster-golden-sturgeon"
 # Change to yours
-export RESOURCE_GROUP="rg-just-gar"
+export RESOURCE_GROUP="rg-genuine-longhorn"
 export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-project" # replace by yours
 export KUBECONFIG=$DEVOPS_PROJECT_PATH/projects/terraform-aks-cluster/private_k8s_config/azurek8s
 kubectl get nodes
@@ -67,7 +67,7 @@ kubectl label namespace aks-istio-system istio.io/rev=asm-1-20 --overwrite
 
 **NOTE:**
 
-- It will take few minutes to enable istio adon to your cluster
+- It will take few minutes (~ 4m) to enable istio adon to your cluster
 - The istio will be installed in `aks-istio-system` namespace
 
 ## 4-Deploy microservices sample app
