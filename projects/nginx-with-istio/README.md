@@ -4,6 +4,7 @@
 
 - https://docs.nginx.com/nginx-ingress-controller/tutorials/nginx-ingress-istio/
 - https://platform9.com/learn/v1.0/tutorials/nginix-controller-via-yaml
+- https://gist.github.com/petitviolet/d36f33d145d0bbf4b54eb187b79d0244
 
 ## Architecture
 
