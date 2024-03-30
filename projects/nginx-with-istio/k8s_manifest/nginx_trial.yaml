@@ -53,14 +53,10 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-        - name: nginx-ingress
-          image: nginx
+        - name: nginx
+          image: nginx:1.14.2
           ports:
             - containerPort: 80
-          volumeMounts:
-            - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
       volumes:
         - name: nginx-config
           configMap:
