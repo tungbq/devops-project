@@ -35,16 +35,11 @@ export DEVOPS_PROJECT_PATH="/mnt/d/CODING/GITHUB/OPEN-SOURCE/my-project/devops-p
 
 ```bash
 kubectl create ns nginx-ingress
-kubectl label namespace nginx-ingress istio.io/rev=asm-1-20 --overwrite
-```
-
-```bash
 # Check current istio version on AKS
 az aks show --resource-group ${RESOURCE_GROUP} --name ${CLUSTER} | grep asm
-
-## Set base on version from previous command
 kubectl label namespace nginx-ingress istio.io/rev=asm-1-20 --overwrite
 
+# Check labels
 kubectl get namespaces -A --show-labels
 ```
 
