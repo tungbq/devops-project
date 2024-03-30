@@ -4,7 +4,9 @@
 
 ### Prerequisite
 
-An Azure account with an active subscription
+- An Azure account with an active subscription
+- Azure CLI installed
+- Kubectl installed
 
 ### Authenticate to Azure
 
