@@ -1,6 +1,6 @@
 # Project: NodeJS project with CICD
 
-- This project aims to develop a Node.js application with CI/CD integration.
+This project aims to develop a Node.js application with CI/CD integration.
 
 ## Overview
 

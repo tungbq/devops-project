@@ -1,44 +1,52 @@
 # Project: Create Windows instance on AWS using Terraform
 
-- This project help you create and connect to your own Windows instance (VM) on AWS using Terraform
-- Technology used: `Terraform`, `AWS`, `Windows server`
+This project help you create and connect to your own Windows instance (VM) on AWS using Terraform
 
-## 1-Overview
+## Overview
 
-- This project help us launch a Windows instance on AWS using Terraform. Following below architecture
+### Introduction
 
-![windows-ec2-architecture](https://docs.aws.amazon.com/images/AWSEC2/latest/WindowsGuide/images/overview_getting_started.png)
+- Tech stack: `Terraform`, `AWS`, `Windows server`
+- To get basic concepts of these tools, you could visit: [**devops-basic**](https://github.com/tungbq/devops-basic) repository
+- To get started with Azure and Terraform, you could visit: [**Azure Terraform Documentation**](https://docs.microsoft.com/en-us/azure/developer/terraform/)
+- Architecture
+  ![windows-ec2-architecture](https://docs.aws.amazon.com/images/AWSEC2/latest/WindowsGuide/images/overview_getting_started.png)
+  (The source image provided by AWS at: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)
 
-(The source image provided by AWS at: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)
+### Prerequisite
 
-## 2-Prerequisite
+- An AWS account
+- AWS CLI installed
+- Terraform installed
 
-### 2.1-Sign up for an AWS account
+## 1-Setup
+
+### 1.1-Sign up for an AWS account
 
 - Follow https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#sign-up-for-aws
 
-### 2.2-Create a key pair
+### 1.2-Create a key pair
 
 - Follow https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
 - Note the key-pair name that you created for later use. E.g: `my-new-keypair-for-demo`
 - The private key file is automatically downloaded by your browser. The base file name is the name you specified as the name of your key pair, and the file name extension is determined by the file format you chose. Save the private key file in a safe place.
 
-### 2.3-Install Terraform
+### 1.3-Install Terraform
 
 - Follow https://github.com/tungbq/devops-basic/tree/main/topics/terraform#installation
 
-### 2.4-Configure Terraform environment to work with AWS
+### 1.4-Configure Terraform environment to work with AWS
 
 - Check this `Prerequisites` section: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build#prerequisites
 
-## 3-Launch the new Windows instance
+## 2-Launch the new Windows instance
 
-### 3.1-Navigate to the current project
+### 2.1-Navigate to the current project
 
 - Ensure you are in the terraform-aws-windows-instance project.
 - If not, run `cd terraform-aws-windows-instance`
 
-### 3.2-Update your own credentials/data in `terraform.tfvars`
+### 2.2-Update your own credentials/data in `terraform.tfvars`
 
 - Create file `terraform.tfvars`, by running command: `cp terraform.tfvars.sample terraform.tfvars`
 
@@ -51,38 +59,38 @@
 
 - Provide the keypair name you created in the step `Create a key pair` above
 
-### 3.3-Terraform init
+### 2.3-Terraform init
 
 - Run `terraform init`
 
-### 3.4-Terraform plan
+### 2.4-Terraform plan
 
 - Run `terraform plan`
 
-### 3.5-Terraform apply
+### 2.5-Terraform apply
 
 - Run `terraform apply`, then check the plan, and type `yes` to confirm!
 
-## 4-Connect to the newly created instance
+## 3-Connect to the newly created instance
 
-### 4.1-Get the Public IP
+### 3.1-Get the Public IP
 
 - After running terraform apply, the public IP address of the new instance will be displayed in the Terraform output or you can retrieve it using the AWS Management Console.
 
-### 4.2-Prepare Your Key Pair
+### 3.2-Prepare Your Key Pair
 
 - If you used a key pair when creating the instance, ensure that you have the private key file corresponding to the key pair.
 
-### 4.3-Use Remote Desktop Client
+### 3.3-Use Remote Desktop Client
 
 - Open the Remote Desktop client on your local machine.
 
-### 4.4-Connect to the Windows Instance
+### 3.4-Connect to the Windows Instance
 
 - Enter the public IP address of your instance in the Remote Desktop client.
 - If you used a key pair, you might need to provide the private key file during the connection process.
 
-### 4.5-Enter Credentials
+### 3.5-Enter Credentials
 
 #### _Download the RDP connection file and get the Admin password_
 
@@ -99,7 +107,7 @@
 - Once connected, enter the username and password for the Windows instance.
 - The default username for AWS Windows instances is typically `Administrator`.
 
-### 4.6-Access the Windows Desktop
+### 3.6-Access the Windows Desktop
 
 - After successful authentication, you should have access to the Windows desktop of your EC2 instance.
 - Then start using it your way, for example open `Microsoft Edge` brower to access Youtube:
@@ -110,6 +118,6 @@ Congrats! You did it. You now have your own windows VM running on AWS
 _Tips:_ Once you are in the Windows, you can change your Windows password to your own definition password for easier access in the next time when needed (Instead of using the very long default password)
 ![change_password_tips](./asset/change_password_tips.png)
 
-## 5-Clean up resource
+## 4-Clean up resource
 
 - If you dont want to use the instance anymore, run `terraform destroy` to terminate your EC2 Windows instance and its related resources
