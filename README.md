@@ -15,7 +15,7 @@
 
 ### Check out [projects](./projects/) list below 🔥
 
-| ID  | Project                                      | URL                                                                          | Status  |
+| ID  | Project                                      | Content                                                                      | Status  |
 | :-- | :------------------------------------------- | :--------------------------------------------------------------------------- | :------ |
 | 01  | Dockerize python application                 | [dockerize-python-application](./projects/dockerize-python-application/)     | ✔️ Done |
 | 02  | Nginx Static Website Local                   | [nginx-static-website-local](./projects/nginx-static-website-local/)         | ✔️ Done |
