@@ -51,7 +51,7 @@ kubectl get namespaces -A --show-labels
 - Deploy
 
 ```bash
-kubectl apply -f $DEVOPS_PROJECT_PATH/projects/nginx-with-istio-on-aks/k8s_manifest/nginx_deployment.yaml
+kubectl apply -f $DEVOPS_PROJECT_PATH/projects/aks-nginx-with-istio/k8s_manifest/nginx-deployment.yaml
 ```
 
 - Get the external nginx IP
@@ -66,9 +66,22 @@ kubectl get svc | grep nginx
 
 ### 4-Monitor the application with Prometheus & Grafana
 
+- Docs: https://istio.io/latest/docs/tasks/observability/metrics/using-istio-dashboard/
 - Deploy Prometheus/Grafana, see: [aks-istio-application](../aks-istio-application/) - step #6
+
+  - (Optional) If you want to expose the servive to internet, add `type: LoadBalancer` to the prometheus helm values:
+    Doc: https://github.com/grafana/helm-charts/blob/main/charts/grafana/README.md
+    ```yaml
+    service:
+      portName: http-web
+      type: LoadBalancer
+    ```
   - Expose the port with port-forward then visit Grafana to get application insights
-  - Import the Istio dashboards to Grafana
+  - Import the Istio dashboards to Grafana (`DASHBOARD in 7639 11829 7636 7630 7645 13277`) via script
+  - Dashboard page:
+    - https://grafana.com/grafana/dashboards/7636-istio-service-dashboard/
+    - https://grafana.com/grafana/dashboards/7639-istio-mesh-dashboard/
+
 - Perform load testing to the frontend main page, by running:
 
 ```bash

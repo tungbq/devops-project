@@ -1122,6 +1122,7 @@ grafana:
   ##
   service:
     portName: http-web
+    # type: LoadBalancer -> Enable if you want to expose Grafana to access externally
 
   serviceMonitor:
     # If true, a ServiceMonitor CRD is created for a prometheus operator
