@@ -12,7 +12,7 @@
 - To get the basic concepts of DevOps and related tools, visit: [**tungbq/devops-basics**](https://github.com/tungbq/devops-basics)
 
 ## Projects
-This is the **third** of my DevOps trio repositories: [devops-basics](https://github.com/tungbq/devops-basics) <-> [devops-practice](https://github.com/tungbq/devops-practice) <-> [devops-project](https://github.com/tungbq/devops-project), designed to help you learn, practice, and apply DevOps.
+This is the **third** of my DevOps trio repositories: [devops-basics](https://github.com/tungbq/devops-basics) ↔️ [devops-practice](https://github.com/tungbq/devops-practice) ↔️ [devops-project](https://github.com/tungbq/devops-project), designed to help you learn, practice, and apply DevOps.
 
 ### Check out [projects](./projects/) list below 🔥
 
