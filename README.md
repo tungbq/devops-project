@@ -25,7 +25,7 @@ This is the **third** repo of my DevOps trio repositories: [devops-basics](https
 | 05  | Create Windows instance on AWS                 | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/)         | ✔️ Done |
 | 06  | Create k8s cluster aws with kubeadm            | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)                 | ✔️ Done |
 | 07  | Create free VPN server on AWS                  | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                   | ✔️ Done |
-| 08  | Provistion fresh AKS cluster with Terraform    | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)               | ✔️ Done |
+| 08  | Provision fresh AKS cluster with Terraform    | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)               | ✔️ Done |
 | 09  | Deploy and monitor application on AKS          | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                         | ✔️ Done |
 | 10  | Deploy application on AKS with Istio           | [aks-istio-application](./projects/aks-istio-application/)                           | ✔️ Done |
 | 11  | Nginx ingress with Istio service mesh on AKS   | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)                             | ✔️ Done |
