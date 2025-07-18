@@ -9,7 +9,7 @@
 
 ## Basic of DevOps
 
-- To get the basic concepts of DevOps and related tools, visit: [**tungbq/devops-basics**](https://github.com/tungbq/devops-basics)
+- To get the basic concepts of DevOps and related tools, visit: **[tungbq/devops-basics](https://github.com/tungbq/devops-basics)**
 
 ## Projects
 
