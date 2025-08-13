@@ -9,9 +9,9 @@ on:
      - ".github/workflows/azure-static-web-apps-salmon-field-0525b1010.yml"
 
   pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches: [ main ]
-   paths:
+    branches: 
+     - main
+    paths:
      - "projects/azure-static-web-apps-simple/**"
 
 jobs:
