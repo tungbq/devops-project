@@ -1,27 +1,45 @@
 # Project 13 — Azure Static Web Apps (Simple)
 
-This mini‑project shows how to host a static website on **Azure Static Web Apps (SWA)** and deploy it automatically from GitHub using **GitHub Actions**.
-
-> ✅ Based on Azure’s official guidance for SWA quickstarts and build configuration. :contentReference[oaicite:1]{index=1}
+This mini-project shows how to host a static website on **Azure Static Web Apps (SWA)** and deploy it automatically from GitHub using **GitHub Actions**.
 
 ---
 
 ## What you’ll build
-- A tiny static site (`index.html`, CSS, JS).
+- A tiny static site (`index.html`, `styles.css`, `main.js`).
 - A GitHub Actions workflow that deploys only when files in this project change.
 
 ---
 
-## Prereqs
+## Prerequisites
 - Azure subscription (Free tier is fine).
-- **Static Web App** created in the Azure Portal:
-  - Plan: *Free* is OK.
-  - During creation, choose **GitHub** as the source.
-  - Select your fork and branch.
-  - Set app location to: `projects/azure-static-web-apps-simple/src`
-  - Leave API/Output location empty for this simple site.
-- If you don’t connect GitHub in the portal, you can also deploy using an **API token** secret `AZURE_STATIC_WEB_APPS_API_TOKEN` (see CI/CD section). :contentReference[oaicite:2]{index=2}
+- Fork of this repository with this project folder present.
 
 ---
 
-## Folder structure 
+## Create the Static Web App (Portal)
+
+When creating the SWA in the Azure Portal:
+
+- **Build preset:** `HTML`
+- **App location:** `projects/azure-static-web-apps-simple/src`
+- **API location:** *(leave blank)*
+- **Output location:** *(leave blank)*
+
+- Static app creation Azure
+  ![](./assets/app1.png)
+  ![](./assets/app2.png)
+If you connect GitHub in the portal creation wizard, Azure will generate a workflow in `.github/workflows/` for you. You can keep that, or use the generic workflow in this repo — just don’t keep **both** enabled at the same time.
+
+---
+
+## Local run
+Open `src/index.html` directly in your browser, or use any static server:
+
+cd projects/azure-static-web-apps-simple/src
+python -m http.server 8000 
+
+
+
+## 10-Related document
+
+- Azure: https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vanilla-javascript&pivots=github
