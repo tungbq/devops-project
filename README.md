@@ -31,6 +31,7 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 | 10  | Deploy application on AKS with Istio           | [aks-istio-application](./projects/aks-istio-application/)                           | ✔️ Done |
 | 11  | Nginx ingress with Istio service mesh on AKS   | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)                             | ✔️ Done |
 | 12  | Deploy and Setup Jenkins on Kubernetes cluster | [jenkins-on-k8s](https://github.com/tungbq/K8sHub/tree/main/hands-on/jenkins-on-k8s) | ✔️ Done |
+| 13  | Azure Static Web Apps (Simple)                 | [azure-static-web-apps-simple](./projects/azure-static-web-apps-simple)              | ✔️ inprgress |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 
