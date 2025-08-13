@@ -1,0 +1,7 @@
+:root { font-family: system-ui, Arial, sans-serif; }
+body { margin: 0; background: #0f172a; color: #e2e8f0; }
+main { max-width: 720px; margin: 6rem auto; padding: 2rem; background: #111827; border-radius: 16px; }
+h1 { margin-top: 0; }
+button { padding: 0.6rem 1rem; border-radius: 8px; border: none; cursor: pointer; }
+pre { background: #0b1220; padding: 1rem; border-radius: 8px; overflow: auto; }
+
