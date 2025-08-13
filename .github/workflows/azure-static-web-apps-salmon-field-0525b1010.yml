@@ -2,8 +2,9 @@ name: Azure Static Web Apps CI/CD
 
 on:
   push:
-    branches: [ main ]
-   paths:
+    branches: 
+     - main
+    paths:
      - "projects/azure-static-web-apps-simple/**"
      - ".github/workflows/azure-static-web-apps-salmon-field-0525b1010.yml"
 
