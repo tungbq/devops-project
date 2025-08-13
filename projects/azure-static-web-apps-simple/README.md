@@ -1,4 +1,4 @@
-# Project 13 — Azure Static Web Apps (Simple)
+# Project — Azure Static Web Apps (Simple)
 
 This mini-project shows how to host a static website on **Azure Static Web Apps (SWA)** and deploy it automatically from GitHub using **GitHub Actions**.
 
@@ -26,8 +26,9 @@ When creating the SWA in the Azure Portal:
 - **Output location:** *(leave blank)*
 
 - Static app creation Azure
-  ![](./assets/app1.png)
-  ![](./assets/app2.png)
+  ![](./src/assets/app1.png)
+  ![](./src/assets/app2.png)
+
 If you connect GitHub in the portal creation wizard, Azure will generate a workflow in `.github/workflows/` for you. You can keep that, or use the generic workflow in this repo — just don’t keep **both** enabled at the same time.
 
 ---
@@ -40,6 +41,6 @@ python -m http.server 8000
 
 
 
-## 10-Related document
+## Reference documents
 
 - Azure: https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vanilla-javascript&pivots=github
