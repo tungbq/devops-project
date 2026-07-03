@@ -50,7 +50,7 @@ This project help you launch your own Open VPN server on AWS
 
 #### _Public-IP_
 
-- Then add your public ID here (to allow RDP access from your PC).
+- Then add your public ID here (to allow SSH access from your PC).
   _Tips_: Visit https://www.whatismyip.com/ to get your public IP
 
 #### _Keypair name_
