@@ -15,25 +15,77 @@
 
 This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basics**](https://github.com/tungbq/devops-basics) ↔️ [devops-practice](https://github.com/tungbq/devops-practice) ↔️ [**tungbq/devops-project**](https://github.com/tungbq/devops-project), designed to help you learn, practice, and apply DevOps.
 
-### Check out [projects](./projects/) list below 🔥
+### Check out [projects](./projects/) list below, grouped by category 🔥
+
+#### 🐳 Containers & Images
+
+| ID  | Project                       | Content                                                                   | Status  |
+| :-- | :----------------------------- | :------------------------------------------------------------------------ | :------ |
+| 01  | Dockerize python application  | [dockerize-python-application](./projects/dockerize-python-application/) | ✔️ Done |
+| 02  | Nginx Static Website Local    | [nginx-static-website-local](./projects/nginx-static-website-local/)     | ✔️ Done |
+
+#### 🔁 CI/CD Pipelines
 
 | ID  | Project                                        | Content                                                                              | Status  |
-| :-- | :--------------------------------------------- | :----------------------------------------------------------------------------------- | :------ |
-| 01  | Dockerize python application                   | [dockerize-python-application](./projects/dockerize-python-application/)             | ✔️ Done |
-| 02  | Nginx Static Website Local                     | [nginx-static-website-local](./projects/nginx-static-website-local/)                 | ✔️ Done |
+| :-- | :---------------------------------------------- | :------------------------------------------------------------------------------------ | :------ |
 | 03  | NodeJS project with CICD                       | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                             | ✔️ Done |
-| 04  | AWS 3 tiers web                                | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                                 | ✔️ Done |
-| 05  | Create Windows instance on AWS                 | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/)         | ✔️ Done |
-| 06  | Create k8s cluster aws with kubeadm            | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)                 | ✔️ Done |
-| 07  | Create free VPN server on AWS                  | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                   | ✔️ Done |
-| 08  | Provision fresh AKS cluster with Terraform     | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)               | ✔️ Done |
-| 09  | Deploy and monitor application on AKS          | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                         | ✔️ Done |
-| 10  | Deploy application on AKS with Istio           | [aks-istio-application](./projects/aks-istio-application/)                           | ✔️ Done |
-| 11  | Nginx ingress with Istio service mesh on AKS   | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)                             | ✔️ Done |
-| 12  | Deploy and Setup Jenkins on Kubernetes cluster | [jenkins-on-k8s](https://github.com/tungbq/K8sHub/tree/main/hands-on/jenkins-on-k8s) | ✔️ Done |
-| 13  | Azure Static Web Apps (Simple)                 | [azure-static-web-apps-simple](./projects/azure-static-web-apps-simple)              | ✔️ Done |
+| 12  | Deploy and Setup Jenkins on Kubernetes cluster | [jenkins-on-k8s](https://github.com/tungbq/K8sHub/tree/main/hands-on/jenkins-on-k8s) (external repo) | ✔️ Done |
 
-### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
+#### 🏗️ Infrastructure as Code (Terraform)
+
+| ID  | Project                                    | Content                                                                       | Status  |
+| :-- | :------------------------------------------ | :------------------------------------------------------------------------------ | :------ |
+| 05  | Create Windows instance on AWS             | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/)   | ✔️ Done |
+| 07  | Create free VPN server on AWS              | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)             | ✔️ Done |
+| 08  | Provision fresh AKS cluster with Terraform | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)         | ✔️ Done |
+
+#### ☸️ Kubernetes & Container Orchestration
+
+| ID  | Project                               | Content                                                               | Status  |
+| :-- | :-------------------------------------- | :----------------------------------------------------------------------- | :------ |
+| 06  | Create k8s cluster aws with kubeadm   | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/) | ✔️ Done |
+| 09  | Deploy and monitor application on AKS | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)         | ✔️ Done |
+
+#### 🕸️ Service Mesh
+
+| ID  | Project                                      | Content                                                       | Status  |
+| :-- | :--------------------------------------------- | :--------------------------------------------------------------- | :------ |
+| 10  | Deploy application on AKS with Istio         | [aks-istio-application](./projects/aks-istio-application/)   | ✔️ Done |
+| 11  | Nginx ingress with Istio service mesh on AKS | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)     | ✔️ Done |
+
+#### ☁️ Cloud Architecture
+
+| ID  | Project                        | Content                                                                  | Status  |
+| :-- | :------------------------------- | :--------------------------------------------------------------------------- | :------ |
+| 04  | AWS 3 tiers web                | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                       | ✔️ Done |
+| 13  | Azure Static Web Apps (Simple) | [azure-static-web-apps-simple](./projects/azure-static-web-apps-simple)    | ✔️ Done |
+
+## 🗺️ Roadmap / Planned Projects
+
+Sourced from our open [`project`-labeled issues](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩ — pick one and open a PR, see [Contributing](#contributing).
+
+#### 🔁 CI/CD Pipelines
+
+- [#5 Simple CI pipeline with Github Action](https://github.com/tungbq/devops-project/issues/5)
+- [#32 Jenkins CI pipeline for Github repo](https://github.com/tungbq/devops-project/issues/32)
+- [#71 Build a CI/CD pipeline for microservices on Kubernetes](https://github.com/tungbq/devops-project/issues/71)
+
+#### 🤖 Configuration Management
+
+- [#14 Configuration Management with Ansible](https://github.com/tungbq/devops-project/issues/14)
+- [#65 Create an `ansible` project with best practice](https://github.com/tungbq/devops-project/issues/65) — likely duplicate of #14, worth merging
+
+#### ☸️ Kubernetes & Container Orchestration
+
+- [#8 Microservices Orchestration](https://github.com/tungbq/devops-project/issues/8)
+- [#9 3 tier app with k8s](https://github.com/tungbq/devops-project/issues/9)
+- [#70 Deploy Kubernetes using Kubespray](https://github.com/tungbq/devops-project/issues/70)
+- [#63 Deploy an AKS cluster using Terraform](https://github.com/tungbq/devops-project/issues/63) — appears already covered by done project 08 above, worth verifying and closing
+- [#88 Deploy and monitor application on AKS cluster](https://github.com/tungbq/devops-project/issues/88) — appears already covered by done project 09 above, worth verifying and closing
+
+#### ☁️ Cloud Architecture
+
+- [#6 Deploy a static website to AWS S3](https://github.com/tungbq/devops-project/issues/6)
 
 ## Contributing
 
