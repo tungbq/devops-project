@@ -17,23 +17,33 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 
 ### Check out [projects](./projects/) list below 🔥
 
-| ID  | Project                                        | Content                                                                              | Status  |
-| :-- | :--------------------------------------------- | :----------------------------------------------------------------------------------- | :------ |
-| 01  | Dockerize python application                   | [dockerize-python-application](./projects/dockerize-python-application/)             | ✔️ Done |
-| 02  | Nginx Static Website Local                     | [nginx-static-website-local](./projects/nginx-static-website-local/)                 | ✔️ Done |
-| 03  | NodeJS project with CICD                       | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                             | ✔️ Done |
-| 04  | AWS 3 tiers web                                | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                                 | ✔️ Done |
-| 05  | Create Windows instance on AWS                 | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/)         | ✔️ Done |
-| 06  | Create k8s cluster aws with kubeadm            | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)                 | ✔️ Done |
-| 07  | Create free VPN server on AWS                  | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                   | ✔️ Done |
-| 08  | Provision fresh AKS cluster with Terraform     | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)               | ✔️ Done |
-| 09  | Deploy and monitor application on AKS          | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                         | ✔️ Done |
-| 10  | Deploy application on AKS with Istio           | [aks-istio-application](./projects/aks-istio-application/)                           | ✔️ Done |
-| 11  | Nginx ingress with Istio service mesh on AKS   | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)                             | ✔️ Done |
-| 12  | Deploy and Setup Jenkins on Kubernetes cluster | [jenkins-on-k8s](https://github.com/tungbq/K8sHub/tree/main/hands-on/jenkins-on-k8s) | ✔️ Done |
-| 13  | Azure Static Web Apps (Simple)                 | [azure-static-web-apps-simple](./projects/azure-static-web-apps-simple)              | ✔️ Done |
+| ID  | Project                                        | Content                                                                                                | Tags / Area                                         | Status      |
+| :-- | :---------------------------------------------- | :----------------------------------------------------------------------------------------------------- | :---------------------------------------------------- | :---------- |
+| 01  | Dockerize python application                   | [dockerize-python-application](./projects/dockerize-python-application/)                              | `Docker` `Containers`                                  | ✔️ Done     |
+| 02  | Nginx Static Website Local                     | [nginx-static-website-local](./projects/nginx-static-website-local/)                                  | `Docker` `Nginx` `Containers`                          | ✔️ Done     |
+| 03  | NodeJS project with CICD                       | [nodejs-cicd-pipeline](./projects/nodejs-cicd-pipeline/)                                              | `CI/CD` `Docker` `GitHub Actions`                      | ✔️ Done     |
+| 04  | AWS 3 tiers web                                | [aws-tree-tiers-web](./projects/aws-tree-tiers-web/)                                                  | `AWS` `Cloud Architecture`                             | ✔️ Done     |
+| 05  | Create Windows instance on AWS                 | [terraform-aws-windows-instance](./projects/terraform-aws-windows-instance/)                          | `Terraform` `IaC` `AWS`                                | ✔️ Done     |
+| 06  | Create k8s cluster aws with kubeadm            | [create-k8s-cluster-aws-ec2](./projects/create-k8s-cluster-aws-ec2/)                                  | `Kubernetes` `AWS` `kubeadm`                           | ✔️ Done     |
+| 07  | Create free VPN server on AWS                  | [terraform-free-vpn-on-aws](./projects/terraform-free-vpn-on-aws/)                                    | `Terraform` `IaC` `AWS` `Networking`                   | ✔️ Done     |
+| 08  | Provision fresh AKS cluster with Terraform     | [terraform-fresh-aks-cluster](./projects/terraform-fresh-aks-cluster/)                                | `Terraform` `IaC` `Azure` `Kubernetes`                 | ✔️ Done     |
+| 09  | Deploy and monitor application on AKS          | [aks-deploy-monitor-app](./projects/aks-deploy-monitor-app/)                                          | `Kubernetes` `Azure` `Monitoring`                      | ✔️ Done     |
+| 10  | Deploy application on AKS with Istio           | [aks-istio-application](./projects/aks-istio-application/)                                            | `Kubernetes` `Service Mesh` `Istio` `Azure`            | ✔️ Done     |
+| 11  | Nginx ingress with Istio service mesh on AKS   | [aks-nginx-with-istio](./projects/aks-nginx-with-istio/)                                              | `Kubernetes` `Service Mesh` `Istio` `Nginx` `Azure`    | ✔️ Done     |
+| 12  | Deploy and Setup Jenkins on Kubernetes cluster | [jenkins-on-k8s](https://github.com/tungbq/K8sHub/tree/main/hands-on/jenkins-on-k8s)                  | `CI/CD` `Jenkins` `Kubernetes`                         | ✔️ Done     |
+| 13  | Azure Static Web Apps (Simple)                 | [azure-static-web-apps-simple](./projects/azure-static-web-apps-simple)                               | `Azure` `Static Web Apps` `Cloud Architecture`         | ✔️ Done     |
+| 14  | Simple CI pipeline with Github Action          | [#5](https://github.com/tungbq/devops-project/issues/5)                                               | `CI/CD` `GitHub Actions`                               | 🚧 Planned  |
+| 15  | Jenkins CI pipeline for Github repo            | [#32](https://github.com/tungbq/devops-project/issues/32)                                             | `CI/CD` `Jenkins`                                      | 🚧 Planned  |
+| 16  | CI/CD pipeline for microservices on Kubernetes | [#71](https://github.com/tungbq/devops-project/issues/71)                                             | `CI/CD` `Kubernetes` `Microservices`                   | 🚧 Planned  |
+| 17  | Configuration Management with Ansible          | [#14](https://github.com/tungbq/devops-project/issues/14)                                             | `Ansible` `Configuration Management`                   | 🚧 Planned  |
+| 18  | 3 tier app with k8s                            | [#9](https://github.com/tungbq/devops-project/issues/9)                                               | `Kubernetes` `Microservices`                           | 🚧 Planned  |
+| 19  | Microservices Orchestration                    | [#8](https://github.com/tungbq/devops-project/issues/8)                                               | `Kubernetes` `Microservices`                           | 🚧 Planned  |
+| 20  | Deploy Kubernetes using Kubespray              | [#70](https://github.com/tungbq/devops-project/issues/70)                                             | `Kubernetes` `Kubespray`                               | 🚧 Planned  |
+| 21  | Deploy a static website to AWS S3              | [#6](https://github.com/tungbq/devops-project/issues/6)                                               | `AWS` `S3` `Static Website`                            | 🚧 Planned  |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
+
+> Note: issues [#63](https://github.com/tungbq/devops-project/issues/63) and [#88](https://github.com/tungbq/devops-project/issues/88) look like stale duplicates of already-completed projects 08 and 09, and issue [#65](https://github.com/tungbq/devops-project/issues/65) looks like a duplicate of #14 — worth a maintainer pass to close/merge before someone picks them up.
 
 ## Contributing
 
