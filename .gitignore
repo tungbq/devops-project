@@ -44,3 +44,16 @@ private_k8s_config
 
 # Claude
 .claude
+
+# Plans
+plans/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/

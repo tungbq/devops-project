@@ -1,0 +1,122 @@
+name: Simple CI pipeline (Python)
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'projects/simple-ci-pipeline-github-actions/**'
+      - '.github/workflows/simple-ci-pipeline-github-actions.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/simple-ci-pipeline-github-actions/**'
+      - '.github/workflows/simple-ci-pipeline-github-actions.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: simple-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/simple-ci-pipeline-github-actions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: projects/simple-ci-pipeline-github-actions/requirements-dev.txt
+
+      - name: Install build dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Build wheel + sdist
+        run: python -m build
+
+      - name: List build output
+        run: ls -l dist/
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: simple-ci-app-dist
+          path: projects/simple-ci-pipeline-github-actions/dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/simple-ci-pipeline-github-actions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: simple-ci-app-dist
+          path: projects/simple-ci-pipeline-github-actions/dist
+
+      - name: Install the built wheel
+        run: pip install dist/*.whl
+
+      - name: Install test dependencies
+        run: pip install "pytest>=8,<9"
+
+      - name: Run tests
+        run: pytest tests/ -v
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/simple-ci-pipeline-github-actions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: simple-ci-app-dist
+          path: projects/simple-ci-pipeline-github-actions/dist
+
+      - name: Install the built wheel
+        run: pip install dist/*.whl
+
+      - name: Smoke-run the installed CLI
+        run: simple-ci-app add 2 3
+
+      - name: Publish deployable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: simple-ci-app-${{ github.sha }}
+          path: projects/simple-ci-pipeline-github-actions/dist/
+          if-no-files-found: error
+          retention-days: 7
