@@ -41,3 +41,6 @@ private_k8s_config
 
 # tf plan
 *.tfplan
+
+# Claude
+.claude
