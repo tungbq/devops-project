@@ -49,7 +49,7 @@ jobs:
         run: ls -l dist/
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: simple-ci-app-dist
           path: projects/simple-ci-pipeline-github-actions/dist/
@@ -114,7 +114,7 @@ jobs:
         run: simple-ci-app add 2 3
 
       - name: Publish deployable artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: simple-ci-app-${{ github.sha }}
           path: projects/simple-ci-pipeline-github-actions/dist/
