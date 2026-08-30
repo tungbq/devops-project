@@ -21,9 +21,11 @@ ARG BUILD_COMMIT_SHA=unknown
 ENV BUILD_VERSION=${BUILD_VERSION}
 ENV BUILD_COMMIT_SHA=${BUILD_COMMIT_SHA}
 
-# Runs as a non-root user (node:22-alpine already ships a "node" user) —
-# containers should never run as root unless something specifically needs it.
-USER node
+# Runs as a non-root user, by numeric UID:GID rather than name — node:22-alpine's
+# "node" user is 1000:1000, and a numeric ID is what tools like Kubernetes'
+# runAsNonRoot pod security check actually need to resolve reliably (hadolint
+# DL3066), unlike a username that only resolves via this image's /etc/passwd.
+USER 1000:1000
 
 EXPOSE 3000
 CMD ["node", "src/index.js"]
