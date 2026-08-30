@@ -41,6 +41,7 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 | 20  | Deploy Kubernetes using Kubespray              | [#70](https://github.com/tungbq/devops-project/issues/70)                                             | `Kubernetes` `Kubespray`                               | 🚧 Planned  |
 | 21  | Deploy a static website to AWS S3              | [#6](https://github.com/tungbq/devops-project/issues/6)                                               | `AWS` `S3` `Static Website`                            | 🚧 Planned  |
 | 22  | Azure Monitoring & Dashboard (APIM + Container Apps) | [azure-monitoring-dashboard](./projects/azure-monitoring-dashboard/)                            | `Azure` `APIM` `Container Apps` `Monitoring` `Observability` | ✔️ Done     |
+| 23  | CI/CD Best Practices — GitHub Actions to Azure Container Apps | [cicd-best-practices-container-apps](./projects/cicd-best-practices-container-apps/)     | `CI/CD` `GitHub Actions` `Azure` `Container Apps` `OIDC` `Terraform` | ✔️ Done     |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 

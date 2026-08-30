@@ -1,0 +1,90 @@
+name: Verify cicd-best-practices-container-apps
+
+# Everything here runs without an Azure subscription — lint, unit tests,
+# Docker build, Dockerfile lint, a vulnerability scan of the built image,
+# and Terraform fmt/validate against the installed provider schema. This
+# is also called by deploy.yml as a reusable workflow, so the exact same
+# checks gate both a plain PR and a real production deploy — one
+# definition of "does this pass", not two that can drift apart.
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "projects/cicd-best-practices-container-apps/**"
+      - ".github/workflows/verify-cicd-best-practices-container-apps.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "projects/cicd-best-practices-container-apps/**"
+      - ".github/workflows/verify-cicd-best-practices-container-apps.yml"
+  workflow_call: {}
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/cicd-best-practices-container-apps/app
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: projects/cicd-best-practices-container-apps/app/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  docker-build-and-scan:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: projects/cicd-best-practices-container-apps/app/Dockerfile
+
+      - name: Build image (not pushed — this job never touches Azure)
+        run: |
+          docker build \
+            --build-arg BUILD_VERSION=ci-verify \
+            --build-arg BUILD_COMMIT_SHA=${{ github.sha }} \
+            -t cicd-best-practices-container-apps:verify \
+            projects/cicd-best-practices-container-apps/app
+
+      - name: Scan image for known vulnerabilities
+        uses: aquasecurity/trivy-action@0.29.0
+        with:
+          image-ref: cicd-best-practices-container-apps:verify
+          severity: "CRITICAL,HIGH"
+          exit-code: "1"
+          ignore-unfixed: true
+
+  terraform-validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/cicd-best-practices-container-apps/terraform
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate
