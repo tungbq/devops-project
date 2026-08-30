@@ -1,0 +1,29 @@
+name: Verify azure-monitoring-dashboard
+
+# Only verifies what's possible without a real Azure subscription — both
+# sample apps build/run/talk to each other, and the Terraform + Workbook
+# JSON are syntactically valid. No `terraform apply` — no Azure credentials
+# exist in this repo's CI, same as every other Azure project here. See the
+# project's demo_project.sh and README for details.
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/azure-monitoring-dashboard/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/azure-monitoring-dashboard/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - name: Build both apps, verify the chain, validate Terraform + Workbook
+        run: |
+          cd projects/azure-monitoring-dashboard
+          chmod +x demo_project.sh
+          ./demo_project.sh
