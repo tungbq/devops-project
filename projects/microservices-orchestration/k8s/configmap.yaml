@@ -1,0 +1,11 @@
+# order-service's downstream URLs, kept out of the Deployment spec so they
+# can be changed (e.g. pointed at a different namespace) without rebuilding
+# or re-templating the Deployment itself.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: order-service-config
+  namespace: microservices-demo
+data:
+  INVENTORY_URL: "http://inventory-service:8000"
+  NOTIFICATION_URL: "http://notification-service:8000"

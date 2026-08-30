@@ -37,7 +37,7 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 | 16  | CI/CD pipeline for microservices on Kubernetes | [#71](https://github.com/tungbq/devops-project/issues/71)                                             | `CI/CD` `Kubernetes` `Microservices`                   | 🚧 Planned  |
 | 17  | Configuration Management with Ansible          | [#14](https://github.com/tungbq/devops-project/issues/14)                                             | `Ansible` `Configuration Management`                   | 🚧 Planned  |
 | 18  | 3 tier app with k8s                            | [#9](https://github.com/tungbq/devops-project/issues/9)                                               | `Kubernetes` `Microservices`                           | 🚧 Planned  |
-| 19  | Microservices Orchestration                    | [#8](https://github.com/tungbq/devops-project/issues/8)                                               | `Kubernetes` `Microservices`                           | 🚧 Planned  |
+| 19  | Microservices Orchestration                    | [microservices-orchestration](./projects/microservices-orchestration/)                               | `Kubernetes` `Microservices` `Scaling`                 | ✔️ Done     |
 | 20  | Deploy Kubernetes using Kubespray              | [#70](https://github.com/tungbq/devops-project/issues/70)                                             | `Kubernetes` `Kubespray`                               | 🚧 Planned  |
 | 21  | Deploy a static website to AWS S3              | [#6](https://github.com/tungbq/devops-project/issues/6)                                               | `AWS` `S3` `Static Website`                            | 🚧 Planned  |
 

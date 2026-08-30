@@ -1,0 +1,21 @@
+name: Verify microservices-orchestration
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/microservices-orchestration/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/microservices-orchestration/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build, deploy to kind, and verify the order flow
+        run: |
+          cd projects/microservices-orchestration
+          chmod +x demo_project.sh
+          ./demo_project.sh
