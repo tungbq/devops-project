@@ -172,7 +172,7 @@ jobs:
             "${{ env.APP_DIR }}"
 
       - name: Scan before push — a vulnerable image never reaches the registry
-        uses: aquasecurity/trivy-action@0.29.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ steps.image-ref.outputs.image }}
           severity: "CRITICAL,HIGH"
