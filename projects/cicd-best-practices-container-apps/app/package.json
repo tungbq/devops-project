@@ -1,0 +1,20 @@
+{
+  "name": "cicd-best-practices-container-apps",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal Express app used to demonstrate a best-practice GitHub Actions -> Azure Container Apps pipeline",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "supertest": "^7.1.3"
+  }
+}

@@ -1,0 +1,241 @@
+name: Deploy cicd-best-practices-container-apps
+
+# Manual trigger on purpose, not `push: main` — see README "Why this
+# deploys on workflow_dispatch, not push". Everything else here follows
+# the checklist a production deploy pipeline is expected to have:
+# OIDC auth (no stored client secret), the same verify checks a PR would
+# run as a hard gate, an immutable image tag, a vulnerability scan before
+# push, a required-reviewer approval gate (via the `production` GitHub
+# Environment), a post-deploy smoke test, and an automatic rollback if
+# that smoke test fails.
+#
+# Needs (repo Settings > Secrets and variables > Actions):
+#   secrets.AZURE_CLIENT_ID / AZURE_TENANT_ID / AZURE_SUBSCRIPTION_ID
+#     - the federated-credential (OIDC) Azure AD app CI authenticates as
+#   secrets.AZURE_CI_PRINCIPAL_OBJECT_ID
+#     - that app's object ID (not client ID) — Terraform grants it AcrPush
+#   secrets.TF_STATE_RESOURCE_GROUP / TF_STATE_STORAGE_ACCOUNT / TF_STATE_CONTAINER
+#     - a pre-existing storage account for Terraform remote state (one-time
+#       manual bootstrap — see README)
+# Plus a GitHub Environment named `production` with required reviewers, for
+# the approval gate.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_production_deploy:
+        description: 'Type "deploy" to confirm — a manual typed confirmation on top of the environment approval gate, so this can never fire by accident.'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  # One deploy at a time, ever — never cancel one mid-flight, queue the
+  # next dispatch behind it instead. Overlapping `terraform apply` /
+  # `az containerapp update` runs against the same resources is exactly
+  # the kind of race a "best practice" pipeline should make impossible.
+  group: deploy-cicd-best-practices-container-apps
+  cancel-in-progress: false
+
+env:
+  TF_WORKING_DIR: projects/cicd-best-practices-container-apps/terraform
+  APP_DIR: projects/cicd-best-practices-container-apps/app
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require explicit typed confirmation
+        if: ${{ inputs.confirm_production_deploy != 'deploy' }}
+        run: |
+          echo "::error::confirm_production_deploy must be exactly 'deploy' — got '${{ inputs.confirm_production_deploy }}'. Aborting before touching Azure."
+          exit 1
+
+  verify:
+    needs: guard
+    uses: ./.github/workflows/verify-cicd-best-practices-container-apps.yml
+
+  infra:
+    needs: verify
+    runs-on: ubuntu-latest
+    # Not gated by the `production` Environment on purpose — infra
+    # provisioning is idempotent and reviewed via the PR that changed it;
+    # the approval gate that matters is on `deploy` below, right before
+    # traffic actually shifts to a new image. Add `environment: production`
+    # here too if your team wants infra changes reviewed a second time.
+    permissions:
+      id-token: write # federated OIDC token for both azure/login and the azurerm Terraform provider
+      contents: read
+    outputs:
+      acr_login_server: ${{ steps.tf-outputs.outputs.acr_login_server }}
+      container_app_name: ${{ steps.tf-outputs.outputs.container_app_name }}
+      resource_group_name: ${{ steps.tf-outputs.outputs.resource_group_name }}
+      container_app_url: ${{ steps.tf-outputs.outputs.container_app_url }}
+      previous_image: ${{ steps.previous-image.outputs.image }}
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_USE_OIDC: "true"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Capture currently-live image (rollback target)
+        id: previous-image
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          # Names must match `var.prefix`'s default ("cicdcademo") in
+          # variables.tf, since terraform apply hasn't run yet at this
+          # point in the job — nothing to read an output from until it
+          # does. If you override prefix, override it here too.
+          # Empty on the very first deploy — there's nothing live to roll
+          # back to yet, and the smoke-test/rollback job treats that as
+          # "no rollback possible" rather than as a failure.
+          image=$(az containerapp show \
+            --name "ca-cicdcademo" \
+            --resource-group "rg-cicdcademo" \
+            --query "properties.template.containers[0].image" -o tsv 2>/dev/null || true)
+          echo "image=${image}" >> "$GITHUB_OUTPUT"
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          terraform init -input=false \
+            -backend-config="resource_group_name=${{ secrets.TF_STATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ secrets.TF_STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ secrets.TF_STATE_CONTAINER }}" \
+            -backend-config="key=cicd-best-practices-container-apps.tfstate"
+
+      - name: Terraform Apply
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          terraform apply -auto-approve -input=false \
+            -var="github_actions_principal_object_id=${{ secrets.AZURE_CI_PRINCIPAL_OBJECT_ID }}"
+
+      - name: Read Terraform outputs
+        id: tf-outputs
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          {
+            echo "acr_login_server=$(terraform output -raw acr_login_server)"
+            echo "container_app_name=$(terraform output -raw container_app_name)"
+            echo "resource_group_name=$(terraform output -raw resource_group_name)"
+            echo "container_app_url=$(terraform output -raw container_app_url)"
+          } >> "$GITHUB_OUTPUT"
+
+  build-and-push:
+    needs: infra
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    outputs:
+      image: ${{ steps.image-ref.outputs.image }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: az acr login (no stored registry password — token via the OIDC-authenticated CLI session)
+        run: az acr login --name $(echo "${{ needs.infra.outputs.acr_login_server }}" | cut -d. -f1)
+
+      - name: Compute immutable image reference
+        id: image-ref
+        run: |
+          # Tagged by commit SHA, never `:latest` — a deploy must always be
+          # traceable back to the exact commit it came from, and a tag that
+          # can't be silently repointed can't drift from what was scanned.
+          echo "image=${{ needs.infra.outputs.acr_login_server }}/cicd-best-practices-container-apps:${{ github.sha }}" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        run: |
+          docker build \
+            --build-arg BUILD_VERSION=${{ github.run_number }} \
+            --build-arg BUILD_COMMIT_SHA=${{ github.sha }} \
+            -t "${{ steps.image-ref.outputs.image }}" \
+            "${{ env.APP_DIR }}"
+
+      - name: Scan before push — a vulnerable image never reaches the registry
+        uses: aquasecurity/trivy-action@0.29.0
+        with:
+          image-ref: ${{ steps.image-ref.outputs.image }}
+          severity: "CRITICAL,HIGH"
+          exit-code: "1"
+          ignore-unfixed: true
+
+      - name: Push
+        run: docker push "${{ steps.image-ref.outputs.image }}"
+
+  deploy:
+    needs: [infra, build-and-push]
+    runs-on: ubuntu-latest
+    environment: production # required reviewers configured on this Environment gate the actual deploy
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Roll the Container App to the new image
+        run: |
+          az containerapp update \
+            --name "${{ needs.infra.outputs.container_app_name }}" \
+            --resource-group "${{ needs.infra.outputs.resource_group_name }}" \
+            --image "${{ needs.build-and-push.outputs.image }}"
+
+      - name: Smoke test
+        id: smoke
+        run: |
+          url="${{ needs.infra.outputs.container_app_url }}"
+          ok=""
+          for i in $(seq 1 15); do
+            if curl -sf "${url}/health" >/dev/null; then ok=1; break; fi
+            sleep 4
+          done
+          if [ -z "$ok" ]; then
+            echo "::error::smoke test never got a healthy response from ${url}/health"
+            exit 1
+          fi
+
+          body=$(curl -sf "${url}/")
+          echo "$body"
+          if ! echo "$body" | grep -q "\"commitSha\":\"${{ github.sha }}\""; then
+            echo "::error::deployed revision is not serving the commit we just pushed — got: $body"
+            exit 1
+          fi
+          echo "Smoke test passed — ${url} is serving commit ${{ github.sha }}."
+
+      - name: Roll back to the previous image
+        if: failure() && steps.smoke.outcome == 'failure' && needs.infra.outputs.previous_image != ''
+        run: |
+          echo "Smoke test failed — rolling back to ${{ needs.infra.outputs.previous_image }}"
+          az containerapp update \
+            --name "${{ needs.infra.outputs.container_app_name }}" \
+            --resource-group "${{ needs.infra.outputs.resource_group_name }}" \
+            --image "${{ needs.infra.outputs.previous_image }}"
+
+      - name: No rollback target available
+        if: failure() && steps.smoke.outcome == 'failure' && needs.infra.outputs.previous_image == ''
+        run: |
+          echo "::error::Smoke test failed and there was no previous image to roll back to (this was the first deploy). Investigate ${{ needs.infra.outputs.container_app_url }} directly."
+          exit 1
