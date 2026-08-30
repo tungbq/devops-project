@@ -1,0 +1,177 @@
+{
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+  "version": "Notebook/1.0",
+  "isLocked": false,
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Service health — SLO, RED metrics, and root-cause log search\n\nPick a service and time range below. Every panel updates for that selection. See this project's README for what each panel means and how to drill from a log row into the full distributed trace."
+      },
+      "name": "intro"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "b7e6f5b4-1a2b-4c3d-9e8f-1a2b3c4d5e6f",
+            "version": "KqlParameterItem/1.0",
+            "name": "Service",
+            "type": 2,
+            "isRequired": true,
+            "query": "AppRequests\n| distinct cloud_RoleName\n| order by cloud_RoleName asc",
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "typeSettings": {
+              "additionalResourceOptions": [],
+              "showDefault": false
+            }
+          },
+          {
+            "id": "c8f7g6c5-2b3c-5d4e-af9a-2b3c4d5e6f7a",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 86400000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                { "durationMs": 3600000 },
+                { "durationMs": 14400000 },
+                { "durationMs": 86400000 },
+                { "durationMs": 604800000 }
+              ],
+              "allowCustom": true
+            },
+            "label": "Time range"
+          },
+          {
+            "id": "d9g8h7d6-3c4d-6e5f-b0ab-3c4d5e6f7a8b",
+            "version": "KqlParameterItem/1.0",
+            "name": "SearchText",
+            "type": 1,
+            "isRequired": false,
+            "value": "",
+            "label": "Log filter (free text, e.g. an order ID or error message fragment)"
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "title": "RED metrics — {Service}",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "AppRequests\n| where cloud_RoleName == '{Service}'\n| where timestamp {TimeRange}\n| summarize [\"Requests/min\"] = count() / (toscalar(datetime_diff('minute', max(timestamp), min(timestamp))) + 1) by bin(timestamp, 5m)\n| render timechart",
+              "size": 0,
+              "title": "Request rate",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "request-rate"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "AppRequests\n| where cloud_RoleName == '{Service}'\n| where timestamp {TimeRange}\n| summarize Total = count(), Failed = countif(success == false) by bin(timestamp, 5m)\n| extend [\"Error rate %\"] = round(100.0 * Failed / Total, 2)\n| project timestamp, [\"Error rate %\"]\n| render timechart",
+              "size": 0,
+              "title": "Error rate (%)",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "error-rate"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "AppRequests\n| where cloud_RoleName == '{Service}'\n| where timestamp {TimeRange}\n| summarize P50 = percentile(duration, 50), P95 = percentile(duration, 95), P99 = percentile(duration, 99) by bin(timestamp, 5m)\n| render timechart",
+              "size": 0,
+              "title": "Response time percentiles (ms)",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "duration-percentiles"
+          }
+        ]
+      },
+      "name": "red-metrics-group"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// SLO definition for this demo: 95% of requests should complete under 500ms.\n// Adjust the 500 / 95 constants below to match a real SLO target.\nAppRequests\n| where cloud_RoleName == '{Service}'\n| where timestamp {TimeRange}\n| summarize Total = count(), UnderTarget = countif(duration < 500)\n| project [\"SLO: % of requests under 500ms\"] = round(100.0 * UnderTarget / Total, 2)",
+        "size": 3,
+        "title": "SLO",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "tiles",
+        "tileSettings": {
+          "showBorder": true,
+          "numberFormatSettings": {
+            "unit": 1,
+            "options": {
+              "style": "decimal",
+              "maximumFractionDigits": 2
+            }
+          }
+        }
+      },
+      "name": "slo-tile"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Root-cause log search\n\nUse the **Log filter** box above to search recent traces and exceptions for `{Service}` — e.g. an order ID, an item name, or an exception type. Each row below carries an `operation_Id`. Copy it and paste it into **Application Insights → Investigate → Transaction search** in the Azure Portal to see the full distributed trace for that request, including the cross-service dotnet→java call chain."
+      },
+      "name": "root-cause-header"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "AppExceptions\n| where cloud_RoleName == '{Service}'\n| where timestamp {TimeRange}\n| where isempty('{SearchText}') or outerMessage has '{SearchText}' or type has '{SearchText}' or operation_Id has '{SearchText}'\n| project timestamp, severityLevel = 3, kind = 'exception', operation_Id, message = strcat(type, ': ', outerMessage)\n| union (\n    AppTraces\n    | where cloud_RoleName == '{Service}'\n    | where timestamp {TimeRange}\n    | where isempty('{SearchText}') or message has '{SearchText}' or operation_Id has '{SearchText}'\n    | project timestamp, severityLevel, kind = 'trace', operation_Id, message\n)\n| order by timestamp desc\n| take 200",
+        "size": 0,
+        "title": "Matching traces and exceptions",
+        "noDataMessage": "No traces or exceptions match this filter in the selected time range.",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "table",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "severityLevel",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  { "operator": ">=", "thresholdValue": "3", "representation": "redHeavy" },
+                  { "operator": ">=", "thresholdValue": "2", "representation": "yellow" },
+                  { "operator": "Default", "thresholdValue": null, "representation": "success" }
+                ]
+              }
+            }
+          ],
+          "sortBy": [{ "itemKey": "timestamp", "sortOrder": 2 }]
+        }
+      },
+      "name": "log-search-table"
+    }
+  ]
+}

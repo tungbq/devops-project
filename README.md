@@ -40,6 +40,7 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 | 19  | Microservices Orchestration                    | [microservices-orchestration](./projects/microservices-orchestration/)                               | `Kubernetes` `Microservices` `Scaling`                 | ✔️ Done     |
 | 20  | Deploy Kubernetes using Kubespray              | [#70](https://github.com/tungbq/devops-project/issues/70)                                             | `Kubernetes` `Kubespray`                               | 🚧 Planned  |
 | 21  | Deploy a static website to AWS S3              | [#6](https://github.com/tungbq/devops-project/issues/6)                                               | `AWS` `S3` `Static Website`                            | 🚧 Planned  |
+| 22  | Azure Monitoring & Dashboard (APIM + Container Apps) | [azure-monitoring-dashboard](./projects/azure-monitoring-dashboard/)                            | `Azure` `APIM` `Container Apps` `Monitoring` `Observability` | ✔️ Done     |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 
