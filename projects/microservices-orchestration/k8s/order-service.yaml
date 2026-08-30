@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  namespace: microservices-demo
+  labels:
+    app: order-service
+spec:
+  # Starts at 2 — the service this project's scaling demo targets, so
+  # kubectl scale/HPA has something visible to change from the outset.
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: order-service:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          envFrom:
+            - configMapRef:
+                name: order-service-config
+          readinessProbe:
+            httpGet: { path: /readyz, port: 8000 }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8000 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            # Real numbers, not placeholders — HPA needs a CPU request to
+            # compute %-of-request utilization against.
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: microservices-demo
+spec:
+  type: NodePort
+  selector:
+    app: order-service
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080

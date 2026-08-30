@@ -1,0 +1,24 @@
+# Requires metrics-server in the cluster (kind doesn't ship it by default —
+# see README's "Scaling" section for the one-line install + the kind-specific
+# --kubelet-insecure-tls patch it needs). Without metrics-server this object
+# still applies cleanly, it just never has metrics to scale on — `kubectl
+# describe hpa` will show "unknown" for current CPU usage in that case.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: order-service
+  namespace: microservices-demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: order-service
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50

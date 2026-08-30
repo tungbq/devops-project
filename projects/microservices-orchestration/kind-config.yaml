@@ -1,0 +1,10 @@
+# Maps the cluster's NodePort 30080 (order-service, see k8s/order-service.yaml)
+# to localhost:8080 — kind doesn't expose NodePorts to the host by default.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 8080
+        protocol: TCP
