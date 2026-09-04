@@ -1,0 +1,29 @@
+name: Verify ansible-configuration-management
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/ansible-configuration-management/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/ansible-configuration-management/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+      - name: Install Ansible and the Docker connection collection
+        run: |
+          pip install ansible-core
+          ansible-galaxy collection install community.docker
+      - name: Run the demo (configures 2 containers, then proves idempotency)
+        run: |
+          cd projects/ansible-configuration-management
+          chmod +x demo_project.sh; ls -la
+          ./demo_project.sh

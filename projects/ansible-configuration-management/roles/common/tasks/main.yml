@@ -1,0 +1,19 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install baseline packages
+  ansible.builtin.apt:
+    name: "{{ baseline_packages }}"
+    state: present
+
+- name: Record which role configured this host
+  # Static content, not a timestamp — a timestamp here would make this task
+  # (and therefore the whole playbook) report "changed" on every single
+  # run, defeating the idempotency check this project demonstrates.
+  ansible.builtin.copy:
+    dest: /etc/configured-by-ansible
+    content: "Configured by the common role.\n"
+    mode: "0644"

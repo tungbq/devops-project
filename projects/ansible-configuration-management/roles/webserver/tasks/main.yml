@@ -1,0 +1,21 @@
+---
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Deploy the templated index page
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: "0644"
+  notify: Reload nginx
+
+- name: Start nginx if it isn't already running
+  # No init system inside a plain container, so we can't use the `service`/
+  # `systemd` module here — start the daemon directly instead. `creates`
+  # keeps this idempotent: once the pidfile exists, this task won't re-run.
+  # On a real systemd host, use ansible.builtin.systemd_service instead.
+  ansible.builtin.command: nginx
+  args:
+    creates: /run/nginx.pid

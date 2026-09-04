@@ -1,0 +1,7 @@
+---
+- name: Reload nginx
+  ansible.builtin.command: nginx -s reload
+  # Explicit, not inferred from the command's exit code: a handler only
+  # ever runs when something notified it, so it always changes state —
+  # ansible-lint's no-changed-when rule wants that stated, not assumed.
+  changed_when: true
