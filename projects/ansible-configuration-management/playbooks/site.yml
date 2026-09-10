@@ -1,0 +1,28 @@
+---
+- name: Configure all demo hosts
+  hosts: all
+  become: true
+  # False here on purpose — the demo targets are minimal ubuntu:22.04
+  # containers with no python3 preinstalled, and fact gathering itself is a
+  # python-based module. Bootstrap python3 first (pre_tasks), then gather
+  # facts explicitly. This is the standard pattern for freshly provisioned
+  # or minimal hosts, not just a container-demo workaround.
+  gather_facts: false
+
+  pre_tasks:
+    - name: Bootstrap python3 and sudo if either is missing
+      # become: false here on purpose — the docker connection already lands
+      # us as root on these minimal images, and sudo isn't installed yet,
+      # so `become: true` (the play default) would fail trying to run
+      # `sudo apt-get ...` before sudo exists. Installing sudo here too is
+      # what makes `become: true` work for every task after this one.
+      ansible.builtin.raw: (which python3 && which sudo) || (apt-get update && apt-get install -y python3 sudo)
+      become: false
+      changed_when: false
+
+    - name: Gather facts now that python3 is available
+      ansible.builtin.setup:
+
+  roles:
+    - common
+    - webserver

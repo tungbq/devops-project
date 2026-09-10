@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ inventory_hostname }}</title></head>
+<body>
+  <h1>Hello from {{ inventory_hostname }}</h1>
+  <p>Environment: {{ app_environment }}</p>
+  <p>Configured by Ansible — every host in this inventory runs the same
+     role, so the markup is identical; only the hostname differs.</p>
+</body>
+</html>

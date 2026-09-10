@@ -1,0 +1,5 @@
+---
+app_environment: demo
+baseline_packages:
+  - curl
+  - vim
