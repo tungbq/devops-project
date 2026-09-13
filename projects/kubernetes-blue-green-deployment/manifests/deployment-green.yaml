@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-green
+  labels:
+    app: demo-app
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: demo-app
+        version: green
+    spec:
+      containers:
+        - name: app
+          image: hashicorp/http-echo:1.0
+          args:
+            - -text=Hello from GREEN (v2)
+            - -listen=:8080
+          ports:
+            - containerPort: 8080

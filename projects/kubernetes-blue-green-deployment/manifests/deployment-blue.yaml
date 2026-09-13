@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-blue
+  labels:
+    app: demo-app
+    version: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-app
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: demo-app
+        version: blue
+    spec:
+      containers:
+        - name: app
+          image: hashicorp/http-echo:1.0
+          args:
+            - -text=Hello from BLUE (v1)
+            - -listen=:8080
+          ports:
+            - containerPort: 8080
