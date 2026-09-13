@@ -1,0 +1,21 @@
+name: Verify kubernetes-blue-green-deployment
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/kubernetes-blue-green-deployment/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/kubernetes-blue-green-deployment/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Deploy blue/green to kind, cut over, and verify zero downtime
+        run: |
+          cd projects/kubernetes-blue-green-deployment
+          chmod +x demo_project.sh; ls -la
+          ./demo_project.sh
