@@ -1,0 +1,21 @@
+name: Verify kubernetes-observability-stack
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/kubernetes-observability-stack/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/kubernetes-observability-stack/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install the observability stack on kind and prove it works end-to-end
+        run: |
+          cd projects/kubernetes-observability-stack
+          chmod +x demo_project.sh; ls -la
+          ./demo_project.sh

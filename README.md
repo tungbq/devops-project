@@ -43,6 +43,7 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 | 22  | Azure Monitoring & Dashboard (APIM + Container Apps) | [azure-monitoring-dashboard](./projects/azure-monitoring-dashboard/)                            | `Azure` `APIM` `Container Apps` `Monitoring` `Observability` | ✔️ Done     |
 | 23  | CI/CD Best Practices — GitHub Actions to Azure Container Apps | [cicd-best-practices-container-apps](./projects/cicd-best-practices-container-apps/)     | `CI/CD` `GitHub Actions` `Azure` `Container Apps` `OIDC` `Terraform` | ✔️ Done     |
 | 24  | Kubernetes Blue-Green Deployment               | [kubernetes-blue-green-deployment](./projects/kubernetes-blue-green-deployment/)                     | `Kubernetes` `Deployment Strategy` `Zero Downtime`     | ✔️ Done     |
+| 25  | Kubernetes Observability Stack                 | [kubernetes-observability-stack](./projects/kubernetes-observability-stack/)                         | `Kubernetes` `Prometheus` `Grafana` `Alertmanager` `Observability` | ✔️ Done     |
 
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 
