@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-crashloop-alert
+  namespace: monitoring
+  # kube-prometheus-stack's Prometheus only picks up PrometheusRules
+  # carrying this label — set to the Helm release name.
+  labels:
+    release: kube-prom-stack
+spec:
+  groups:
+    - name: demo.rules
+      rules:
+        - alert: DemoPodCrashLooping
+          # The built-in KubePodCrashLooping alert (shipped with this same
+          # chart) uses `for: 15m` — sane for real production noise
+          # reduction, far too slow for a demo. Same underlying signal
+          # (kube-state-metrics' CrashLoopBackOff waiting reason), a `for`
+          # short enough to actually watch fire.
+          expr: max_over_time(kube_pod_container_status_waiting_reason{namespace="default",reason="CrashLoopBackOff"}[2m]) >= 1
+          for: 30s
+          labels:
+            severity: warning
+          annotations:
+            summary: "Demo pod {{ $labels.pod }} is crash looping"
