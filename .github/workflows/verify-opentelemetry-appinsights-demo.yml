@@ -1,0 +1,21 @@
+name: Verify opentelemetry-appinsights-demo
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'projects/opentelemetry-appinsights-demo/**'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'projects/opentelemetry-appinsights-demo/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build both services, verify agent attachment, and prove cross-service trace propagation
+        run: |
+          cd projects/opentelemetry-appinsights-demo
+          chmod +x demo_project.sh; ls -la
+          ./demo_project.sh
