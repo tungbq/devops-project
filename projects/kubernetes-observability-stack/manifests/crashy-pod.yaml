@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crashy
+  namespace: default
+spec:
+  restartPolicy: Always
+  containers:
+    - name: crashy
+      image: busybox
+      command: ["sh", "-c", "echo crashing on purpose; exit 1"]
