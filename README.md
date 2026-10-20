@@ -13,7 +13,7 @@
 
 ## Projects
 
-This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basics**](https://github.com/tungbq/devops-basics) ↔️ [devops-practice](https://github.com/tungbq/devops-practice) ↔️ [**tungbq/devops-project**](https://github.com/tungbq/devops-project), designed to help you learn, practice, and apply DevOps.
+This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basics**](https://github.com/tungbq/devops-basics) ↔️ [**devops-practice**](https://github.com/tungbq/devops-practice) ↔️ [**tungbq/devops-project**](https://github.com/tungbq/devops-project), designed to help you learn, practice, and apply DevOps.
 
 ### Check out [projects](./projects/) list below 🔥
 
@@ -48,6 +48,8 @@ This is the **third** repo of my DevOps trio repositories: [**tungbq/devops-basi
 ### Explore our upcoming projects by visiting [this link](https://github.com/tungbq/devops-project/issues?q=is%3Aissue+is%3Aopen+label%3Aproject) ⏩
 
 > Note: issues [#63](https://github.com/tungbq/devops-project/issues/63) and [#88](https://github.com/tungbq/devops-project/issues/88) look like stale duplicates of already-completed projects 08 and 09, and issue [#65](https://github.com/tungbq/devops-project/issues/65) looks like a duplicate of #14 — worth a maintainer pass to close/merge before someone picks them up.
+
+> **AWS Architecture Center:** For deeper dives into AWS best practices and reference architectures, visit the [AWS Architecture Center](https://aws.amazon.com/architecture/).
 
 ## Contributing
 

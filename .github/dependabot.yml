@@ -1,11 +1,26 @@
----
 version: 2
 updates:
+  # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-  - directory: "/projects/create-k8s-cluster-aws-ec2"
-    package-ecosystem: "terraform"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "ci"
+      - "github-actions"
+
+  # Terraform
+  - package-ecosystem: "terraform"
+    directory: "/projects/create-k8s-cluster-aws-ec2"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "terraform"
+      - "aws"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
